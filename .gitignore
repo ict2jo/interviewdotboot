@@ -396,7 +396,7 @@ bower_components
 psd
 thumb
 sketch
-
+./vscode
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
