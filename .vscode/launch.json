@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-InterviewdotbootApplication<interviewdotboot>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ict.interviewdotboot.InterviewdotbootApplication",
+      "projectName": "interviewdotboot",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
