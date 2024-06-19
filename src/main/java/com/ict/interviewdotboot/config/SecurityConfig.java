@@ -34,7 +34,7 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable())
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/mypage/inquiry").permitAll()
+                        .requestMatchers("/mypage/inquiry","/interview/choose").permitAll()
                         .anyRequest().authenticated()
         )
         .logout(logout -> logout
