@@ -6,9 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import com.ict.interviewdotboot.mapper.MemberMapper;
-import com.ict.interviewdotboot.vo.MembersVO;
+import com.ict.interviewdotboot.mapper.UserMapper;
+import com.ict.interviewdotboot.vo.UserVO;
 
 import java.util.ArrayList;
 
@@ -16,14 +15,15 @@ import java.util.ArrayList;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private MemberMapper memberMapper;
+    private UserMapper userMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MembersVO member = memberMapper.selectMember(username);
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        UserVO member = userMapper.selectUser(id);
+        System.out.println(id);
         if (member == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+            throw new UsernameNotFoundException("User not found with username: " + id);
         }
-        return new User(member.getId(), member.getPassword(), new ArrayList<>());
+        return new User(member.getId(), member.getPw(), new ArrayList<>());
     }
 }
