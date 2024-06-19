@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.interviewdotboot.mapper.MypageMapper;
-import com.ict.interviewdotboot.vo.MypageVO;
+import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.MyuserVO;
 
 @Service
@@ -15,12 +15,12 @@ public class MypageService {
     @Autowired
     private MypageMapper mypageMapper;
 
-    public List<MypageVO> getinquiry(){
+    public List<MyinquiryVO> getinquiry(){
         return mypageMapper.getinquiry();
     }
 
-    public int insertinquiry(MypageVO mypageVO){
-        return mypageMapper.insertinquiry(mypageVO);
+    public int insertinquiry(MyinquiryVO myinquiryVO){
+        return mypageMapper.insertinquiry(myinquiryVO);
     }
 
     public List<MyuserVO> getprofile(){
@@ -37,5 +37,16 @@ public class MypageService {
         } else {
             throw new RuntimeException("데이터베이스 업데이트 실패"); // 실패 시 롤백을 위해 예외 던지기
         }
+    }
+
+    public int addfavorites(MyuserVO myuserVO){
+        System.out.println("fdsfdsf젠장");
+        return mypageMapper.addfavorites(myuserVO);
+    }
+    public int deletefavorites(MyuserVO myuserVO){
+        return mypageMapper.deletefavorites(myuserVO);
+    }
+    public List<MyuserVO> getstar(){
+        return mypageMapper.getstar();
     }
 }
