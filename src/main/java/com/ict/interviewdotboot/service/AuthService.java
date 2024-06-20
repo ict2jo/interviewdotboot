@@ -30,8 +30,8 @@ public class AuthService {
    try {
      Authentication authentication = authenticationManager.authenticate(
        new UsernamePasswordAuthenticationToken(user.getId(), user.getPw()));
-       System.out.println("authentication"+authentication);
-       final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getId());
+      
+          final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getId());
         final String jwt = jwtUtil.generateToken(userDetails);
         System.out.println(jwt);
         return ResponseEntity.ok(new JwtResponse(jwt));

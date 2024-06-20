@@ -36,7 +36,9 @@ public class UserService {
     return userMapper.getUserList();
   }
 
-
+  public UserVO getUser(String id) {
+    return userMapper.selectUser(id);
+  }
 
   // public List<AdminVO> getAdminList() {
   //   return userMapper.getAdminList();
