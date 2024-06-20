@@ -4,10 +4,10 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ict.interviewdotboot.mapper.MypageMapper">
-    <select id="getinquiry"  resultType="MypageVO">
+    <select id="getinquiry"  resultType="MyinquiryVO">
         SELECT * FROM Inquiry order by i_idx
     </select>
-    <insert id="insertinquiry" parameterType="MypageVO">
+    <insert id="insertinquiry" parameterType="MyinquiryVO">
         INSERT INTO Inquiry (i_subject, i_content)
         VALUES (#{i_subject}, #{i_content})
     </insert>
@@ -17,19 +17,31 @@
             INNER JOIN Add_profile a ON u.u_idx = a.u_idx
             WHERE u.u_idx = 1;
     </select>
-    <insert id="editprofile1" parameterType="MyuserVO">
+    <update id="editprofile1" parameterType="MyuserVO">
         UPDATE User_t
             SET name = #{name},
                 phonenumber = #{phonenumber},
                 email = #{email}
             WHERE u_idx = 1;
-    </insert>
-    <insert id="editprofile2" parameterType="MyuserVO">
+    </update>
+    <update id="editprofile2" parameterType="MyuserVO">
         UPDATE Add_profile
             SET p_job = #{p_job},
                 p_class = #{p_class},
                 p_career = #{p_career},
                 p_location = #{p_location}
             WHERE u_idx = 1;
+    </update>
+    <insert id="addfavorites" parameterType="MyuserVO">
+        INSERT INTO Favorites(f_num,u_idx)
+        VALUES (#{f_num},#{u_idx})
     </insert>
+    <delete id="deletefavorites" parameterType="MyuserVO">
+        DELETE FROM Favorites
+        WHERE f_num = #{f_num} AND u_idx = #{u_idx}
+    </delete>
+    <select id="getstar"  resultType="MyuserVO">
+        SELECT * FROM Favorites
+        WHERE u_idx = #{u_idx};
+    </select>
 </mapper>

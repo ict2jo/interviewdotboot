@@ -3,7 +3,7 @@ package com.ict.interviewdotboot.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.interviewdotboot.service.MypageService;
-import com.ict.interviewdotboot.vo.MypageVO;
+import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.MyuserVO;
 
 import java.util.List;
@@ -25,13 +25,13 @@ public class MypageController {
     private MypageService mypageService;
 
     @GetMapping("/inquiry")
-    public List<MypageVO> getinquiry() {
+    public List<MyinquiryVO> getinquiry() {
         return mypageService.getinquiry();
     }
 
     @PostMapping("/inquirywrite")
-    public int insertinquiry(@RequestBody MypageVO mypageVO) {
-        return mypageService.insertinquiry(mypageVO);
+    public int insertinquiry(@RequestBody MyinquiryVO myinquiryVO) {
+        return mypageService.insertinquiry(myinquiryVO);
     }
     @GetMapping("/selfprofile")
     public List<MyuserVO> getprofile() {
@@ -41,5 +41,20 @@ public class MypageController {
     @PostMapping("/editprofile")
     public int editprofile(@RequestBody MyuserVO myuserVO) {
         return mypageService.editprofile(myuserVO);
+    }
+
+    @PostMapping("/favorites")
+    public int addfavorites(@RequestBody MyuserVO myuserVO) {
+        return mypageService.addfavorites(myuserVO);
+    }
+    
+    @PostMapping("/nonefavorites")
+    public int deletefavorites(@RequestBody MyuserVO myuserVO) {
+        return mypageService.deletefavorites(myuserVO);
+    }
+
+    @GetMapping("/star")
+    public List<MyuserVO> getstar() {
+        return mypageService.getstar();
     }
 }
