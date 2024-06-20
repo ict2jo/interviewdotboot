@@ -14,6 +14,7 @@ public interface UserMapper {
   UserVO selectUser(@Param("id") String id);
   List<UserVO> getUserList();
 
+
   // AdminVO selectAdmin(@Param("a_idx") String a_idx);
 
 
