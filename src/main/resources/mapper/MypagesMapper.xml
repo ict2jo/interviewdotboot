@@ -7,4 +7,29 @@
     <select id="getinquiry"  resultType="MypageVO">
         SELECT * FROM Inquiry order by i_idx
     </select>
+    <insert id="insertinquiry" parameterType="MypageVO">
+        INSERT INTO Inquiry (i_subject, i_content)
+        VALUES (#{i_subject}, #{i_content})
+    </insert>
+    <select id="getprofile"  resultType="MyuserVO">
+        SELECT *
+            FROM User_t u
+            INNER JOIN Add_profile a ON u.u_idx = a.u_idx
+            WHERE u.u_idx = 1;
+    </select>
+    <insert id="editprofile1" parameterType="MyuserVO">
+        UPDATE User_t
+            SET name = #{name},
+                phonenumber = #{phonenumber},
+                email = #{email}
+            WHERE u_idx = 1;
+    </insert>
+    <insert id="editprofile2" parameterType="MyuserVO">
+        UPDATE Add_profile
+            SET p_job = #{p_job},
+                p_class = #{p_class},
+                p_career = #{p_career},
+                p_location = #{p_location}
+            WHERE u_idx = 1;
+    </insert>
 </mapper>
