@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class MyuserVO {
-    private String name, birth, addr, phonenumber, Field, email, u_idx,  p_job, p_class,p_career,p_location, f_num;
+    private String name,id, birth, addr, phonenumber, Field, email, u_idx,  p_job, p_class,p_career,p_location, f_num;
 }

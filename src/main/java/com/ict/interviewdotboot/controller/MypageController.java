@@ -34,8 +34,8 @@ public class MypageController {
         return mypageService.insertinquiry(myinquiryVO);
     }
     @GetMapping("/selfprofile")
-    public List<MyuserVO> getprofile() {
-        return mypageService.getprofile();
+    public List<MyuserVO> getprofile(MyuserVO myuserVO) {
+        return mypageService.getprofile(myuserVO);
     }
 
     @PostMapping("/editprofile")

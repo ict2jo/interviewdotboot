@@ -11,7 +11,7 @@ import com.ict.interviewdotboot.vo.MyuserVO;
 public interface MypageMapper {
     List<MyinquiryVO> getinquiry();
     int insertinquiry(MyinquiryVO myinquiryVO);
-    List<MyuserVO> getprofile();
+    List<MyuserVO> getprofile(MyuserVO myuserVO);
     int editprofile1(MyuserVO myuserVO);
     int editprofile2(MyuserVO myuserVO);
     int addfavorites(MyuserVO myuserVO);

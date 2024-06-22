@@ -23,8 +23,8 @@ public class MypageService {
         return mypageMapper.insertinquiry(myinquiryVO);
     }
 
-    public List<MyuserVO> getprofile(){
-        return mypageMapper.getprofile();
+    public List<MyuserVO> getprofile(MyuserVO myuserVO){
+        return mypageMapper.getprofile(myuserVO);
     }
 
     @Transactional
