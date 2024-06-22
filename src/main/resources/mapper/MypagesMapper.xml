@@ -11,18 +11,18 @@
         INSERT INTO Inquiry (i_subject, i_content)
         VALUES (#{i_subject}, #{i_content})
     </insert>
-    <select id="getprofile"  resultType="MyuserVO">
-        SELECT *
+    <select id="getprofile"  parameterType="MyuserVO" resultType="MyuserVO">
+        SELECT u.*, a.*
             FROM User_t u
             INNER JOIN Add_profile a ON u.u_idx = a.u_idx
-            WHERE u.u_idx = 1;
+            WHERE u.u_idx = #{u_idx};
     </select>
     <update id="editprofile1" parameterType="MyuserVO">
         UPDATE User_t
             SET name = #{name},
                 phonenumber = #{phonenumber},
                 email = #{email}
-            WHERE u_idx = 1;
+            WHERE u_idx = #{u_idx};
     </update>
     <update id="editprofile2" parameterType="MyuserVO">
         UPDATE Add_profile
@@ -30,7 +30,7 @@
                 p_class = #{p_class},
                 p_career = #{p_career},
                 p_location = #{p_location}
-            WHERE u_idx = 1;
+            WHERE u_idx = #{u_idx};
     </update>
     <insert id="addfavorites" parameterType="MyuserVO">
         INSERT INTO Favorites(f_num,u_idx)
