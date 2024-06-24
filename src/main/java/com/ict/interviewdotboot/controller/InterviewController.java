@@ -2,6 +2,7 @@ package com.ict.interviewdotboot.controller;
 
 import com.ict.interviewdotboot.service.InterviewService;
 import com.ict.interviewdotboot.vo.InterviewVO;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class InterviewController {
     private InterviewService interviewService;
 
     @GetMapping("/choose")
-    public List<InterviewVO> getQuestionList() {
-        return interviewService.getQuestionList();
+    public List<InterviewVO> getQuestionList(InterviewVO interviewVO) {
+        return interviewService.getQuestionList(interviewVO);
     }
 
 }

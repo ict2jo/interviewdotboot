@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class InterviewVO {
-    private String question;
+    private String category,question;
 }
