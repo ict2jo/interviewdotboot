@@ -3,13 +3,21 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PaymentWindowSampleApplication",
+      "request": "launch",
+      "mainClass": "com.ict.interviewdotboot.PaymentWindowSampleApplication",
+      "projectName": "interviewdotboot"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-InterviewdotbootApplication<interviewdotboot>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "mainClass": "com.ict.interviewdotboot.InterviewdotbootApplication",
       "projectName": "interviewdotboot",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55039 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=interviewdotboot"
     }
   ]
 }
