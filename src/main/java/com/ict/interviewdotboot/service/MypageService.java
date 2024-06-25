@@ -18,11 +18,21 @@ public class MypageService {
     public List<MyinquiryVO> getinquiry(){
         return mypageMapper.getinquiry();
     }
-
+    
     public int insertinquiry(MyinquiryVO myinquiryVO){
         return mypageMapper.insertinquiry(myinquiryVO);
     }
 
+    public int editinquiry(MyinquiryVO myinquiryVO){
+        return mypageMapper.editinquiry(myinquiryVO);
+    }
+    
+    public List<MyinquiryVO> getInquiryDetail(String i_idx){
+        return mypageMapper.getInquiryDetail(i_idx);
+    }
+    public int deleteinquiry(String i_idx){
+        return mypageMapper.deleteinquiry(i_idx);
+    }
     public List<MyuserVO> getprofile(MyuserVO myuserVO){
         return mypageMapper.getprofile(myuserVO);
     }
@@ -46,7 +56,7 @@ public class MypageService {
     public int deletefavorites(MyuserVO myuserVO){
         return mypageMapper.deletefavorites(myuserVO);
     }
-    public List<MyuserVO> getstar(){
-        return mypageMapper.getstar();
+    public List<MyuserVO> getstar( String u_idx){
+        return mypageMapper.getstar(u_idx);
     }
 }
