@@ -1,5 +1,12 @@
 package com.ict.interviewdotboot.mapper;
 
-public class TossMapper {
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ict.interviewdotboot.vo.TossVO;
+
+@Mapper
+public interface TossMapper {
+
+    int savePayment(TossVO tossVO);
     
 }
