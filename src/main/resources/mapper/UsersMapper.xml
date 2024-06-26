@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.ict.interviewdotboot.mapper.UserMapper">
-    <select id="selectUser" resultType="UserVO">
-      SELECT * FROM User_t WHERE id = #{id}
-    </select>
-    <!-- <select id="selectAdmin" resultType="AdminVO">
-      SELECT * FROM Admin_t WHERE a_idx = #{a_idx}
-    </select> -->
-    <select id="getUserList" resultType="UserVO">
-      select * from User_t order by u_idx
-    </select>
-<!-- 
-    <select id="getAdminList" resultType="AdminVO">
-      select * from Admin_t order by created_at
-    </select> -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <insert id="createUser" parameterType="com.ict.interviewdotboot.vo.UserVO" >
-      INSERT INTO User_t (name, email, birth, id, pw, phonenumber, u_regdate)
-      VALUES (#{name}, #{email}, #{birth}, #{id}, #{pw}, #{phonenumber}, sysdate())
-  </insert>
-  </mapper>
+<mapper namespace="com.ict.interviewdotboot.mapper.UserMapper">
+  <select id="selectUser" resultType="UserVO"> SELECT * FROM User_t WHERE id = #{id} </select>
+
+  <select id="getUserList" resultType="UserVO"> select * from User_t order by u_idx </select>
+
+  <insert id="createUser" parameterType="com.ict.interviewdotboot.vo.UserVO"> INSERT INTO User_t
+    (name, email, birth, id, pw, phonenumber, u_regdate, last_login) VALUES (#{name}, #{email}, #{birth}, #{id},
+    #{pw}, #{phonenumber}, sysdate(), NOW()) </insert>
+
+  <!-- email로 users 테이블에 있는지 찾기 -->
+  <select id="findUserByEmail" parameterType="String" resultType="UserVO"> select * from User_t where
+    email = #{email} </select>
+
+  <!-- sns가 처음 로그인 했을 때 -->
+  <insert id="insertUser" parameterType="UserVO"> 
+    INSERT INTO User_t ( name, email, birth, id, pw, phonenumber, u_regdate, provider, kakao, naver, google, last_login) VALUES (#{name}, #{email}, #{birth},
+    #{id}, #{pw}, #{phonenumber}, sysdate(), #{provider}, #{kakao}, #{naver}, #{google}, NOW())
+ </insert>
+
+  <!-- 처음이 아니면 업데이트-->
+  <update id="updateUser" parameterType="UserVO"> Update User_t set last_login = NOW() where id =
+    #{id} </update>
+</mapper>

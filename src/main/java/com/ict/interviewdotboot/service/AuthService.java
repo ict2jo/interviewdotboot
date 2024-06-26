@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.ict.interviewdotboot.jwt.JWTUtil;
 import com.ict.interviewdotboot.jwt.JwtResponse;
+import com.ict.interviewdotboot.vo.DataVO;
 import com.ict.interviewdotboot.vo.UserVO;
 
 @Service
@@ -21,23 +22,30 @@ public class AuthService {
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private UserDetailsService userDetailsService;
+  private MyUserDetailsService userDetailsService;
 
   @Autowired
   private JWTUtil jwtUtil;
 
-  public ResponseEntity<?> authenticate(UserVO user) {
+  public DataVO authenticate(UserVO user) {
+   DataVO dataVO = new DataVO();
    try {
-     Authentication authentication = authenticationManager.authenticate(
-       new UsernamePasswordAuthenticationToken(user.getId(), user.getPw()));
-      
-          final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getId());
-        final String jwt = jwtUtil.generateToken(userDetails);
-        System.out.println(jwt);
-        return ResponseEntity.ok(new JwtResponse(jwt));
-      
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed: " + e.getMessage());
-    }
+    Authentication authentication = authenticationManager.authenticate(
+      new UsernamePasswordAuthenticationToken(user.getId(), user.getPw())
+    );
+
+    UserVO uvo = userDetailsService.getUserDetail(user.getId());
+    String jwt = jwtUtil.generateToken(user.getId());
+
+    dataVO.setSuccess(true);
+    dataVO.setToken(jwt);
+    dataVO.setUserdetails(uvo);
+
+    return dataVO;
+   } catch (Exception e) {
+    dataVO.setSuccess(false);
+    dataVO.setMessage(e.getMessage());
+    return dataVO;
+   }
   }
 }
