@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.MypageMapper">
     <select id="getinquiry"  resultType="MyinquiryVO">
-        SELECT * FROM Inquiry WHERE i_active = 1 order by i_idx DESC
+        SELECT * FROM Inquiry order by i_idx DESC
     </select>
     <select id="getInquiryDetail"  resultType="MyinquiryVO" parameterType="String">
         SELECT * FROM Inquiry WHERE i_idx = #{i_idx};
