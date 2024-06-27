@@ -7,6 +7,8 @@ import com.ict.interviewdotboot.mapper.UserMapper;
 import com.ict.interviewdotboot.vo.UserVO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserService {
@@ -14,11 +16,11 @@ public class UserService {
   private UserMapper userMapper;
 
   @Autowired
-
   private PasswordEncoder passwordEncoder;
 
-  public int createUser(UserVO user){
+  private Map<String, String> authCodeStore = new ConcurrentHashMap<>();
 
+  public int createUser(UserVO user){
     String encodedPw = passwordEncoder.encode(user.getPw());
     UserVO newUser = new UserVO();
     newUser.setPw(encodedPw);
@@ -36,12 +38,32 @@ public class UserService {
     return userMapper.getUserList();
   }
 
-  public UserVO getUser(String id) {
+  public UserVO selectUser(String id) {
     return userMapper.selectUser(id);
+  }
+
+  public UserVO getUser(String id) {
+    return userMapper.getUser(id);
   }
 
   public int findUserforPw(UserVO user) {
     return userMapper.findUserforPw(user);
 }
 
+public boolean verifyAuthCode(String email, String authCode) {
+  String storedCode = authCodeStore.get(email);
+  return storedCode != null && storedCode.equals(authCode);
+}
+
+public void storeAuthCode(String email, String authCode) {
+  authCodeStore.put(email, authCode);
+}
+
+public int resetPw(UserVO user) {
+  String encodedPw = passwordEncoder.encode(user.getPw());
+  UserVO newUser = new UserVO();
+  newUser.setPw(encodedPw);
+  newUser.setId(user.getId());
+  return userMapper.resetPw(newUser);
+}
 }

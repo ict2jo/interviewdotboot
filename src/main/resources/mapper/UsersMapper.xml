@@ -5,6 +5,7 @@
   
   <mapper namespace="com.ict.interviewdotboot.mapper.UserMapper">
     <select id="selectUser" resultType="UserVO"> SELECT * FROM User_t WHERE id = #{id} </select>
+    <select id="getUser" resultType="UserVO"> SELECT * FROM User_t WHERE id = #{id} </select>
 
     <select id="getUserList" resultType="UserVO"> select * from User_t order by u_idx </select>
   
@@ -28,6 +29,9 @@
   
     <!-- 처음이 아니면 업데이트-->
     <update id="updateUser" parameterType="UserVO"> Update User_t set last_login = NOW() where id =
+      #{id} </update>
+
+    <update id="resetPw" parameterType="UserVO"> Update User_t set pw = #{pw} where id =
       #{id} </update>
 
   <select id="findUserforPw">
