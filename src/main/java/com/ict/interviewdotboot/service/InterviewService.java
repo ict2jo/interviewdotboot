@@ -13,8 +13,11 @@ public class InterviewService {
     @Autowired
     private InterviewMapper interviewMapper;
 
+    public List<InterviewVO> getQuestionList(InterviewVO interviewVO) {
+        return interviewMapper.getQuestionList(interviewVO);
+    }
 
-    public List<InterviewVO> getQuestionList(){
-        return interviewMapper.getQuestionList();
+    public int insertResult(InterviewVO interviewVO) {
+        return interviewMapper.insertResult(interviewVO);
     }
 }
