@@ -14,7 +14,7 @@ public class MailService {
 	public void sendEmail(String randomNumber, String toMail) {
 		try {
 			MailHandler sendMail = new MailHandler(mailSender);
-			sendMail.setSubject("[AIM 인증 메일입니다]");
+			sendMail.setSubject("[인터뷰닷 인증 메일입니다]");
 			
 			sendMail.setText("<div style='display: flex; flex-direction: column; align-items: center;'>"
 				+ "<h1>AIM 메일 인증</h1>"
