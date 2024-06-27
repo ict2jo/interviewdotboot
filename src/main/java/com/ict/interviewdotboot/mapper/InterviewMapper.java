@@ -10,4 +10,6 @@ import java.util.List;
 public interface InterviewMapper {
 
     List<InterviewVO> getQuestionList(InterviewVO interviewVO);
+
+    int insertResult(InterviewVO interviewVO);
 }

@@ -17,4 +17,7 @@ public class InterviewService {
         return interviewMapper.getQuestionList(interviewVO);
     }
 
+    public int insertResult(InterviewVO interviewVO) {
+        return interviewMapper.insertResult(interviewVO);
+    }
 }
