@@ -29,7 +29,7 @@ public class TossService {
     @Value("${toss.secret.key}")
     private String tossSecretKey;
     
-    public boolean confirmPayment(String paymentKey, String orderId, int amount, String authorizationHeader) {
+    public boolean confirmPayment(String paymentKey, String orderId, int amount, String string, String authorizationHeader) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             // UTF-8 인코딩 설정 추가

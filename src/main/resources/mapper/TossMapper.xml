@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.TossMapper">
     <insert id="confirmPayment" parameterType="TossVO">
-        INSERT INTO Toss_t(orderId, orderName, amount, totalAmount, approvedAt, dueDate)
-        VALUES(#{orderId}, #{orderName}, #{amount}, #{totalAmount}, #{approvedAt}, #{dueDate})
+        INSERT INTO Toss_t(u_idx, orderId, orderName, amount, totalAmount, approvedAt, dueDate)
+        VALUES(#{customerIdx}, #{orderId}, #{orderName}, #{amount}, #{totalAmount}, #{approvedAt}, #{dueDate})
     </insert>
 </mapper>

@@ -21,9 +21,13 @@ public class TossController {
                 tvo.getPaymentKey(),
                 tvo.getOrderId(),
                 tvo.getAmount(),
+                tvo.getCustomerIdx(),
                 authorizationHeader
                 );
             if (isConfirmed) {
+                System.out.println("헤더"+authorizationHeader);
+                System.out.println("CustomerIdx: " + tvo.getCustomerIdx());
+                System.out.println("u_idx: " + tvo.getU_idx());
                 return ResponseEntity.ok(new TossVO());
             } else {
                 return ResponseEntity.status(400).body(new TossVO());
