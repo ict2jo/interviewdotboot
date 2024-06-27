@@ -59,6 +59,11 @@ public class JWTUtil {
         return createToken(claims, userDetails.getUsername());
     }
 
+    public String generateToken(String id) {
+        Map<String, Object> claims = new HashMap<>();
+        return createToken(claims, id);
+    }
+
     // 토큰 생성 
     private String createToken(Map<String, Object> claims, String subject) {
         // 내용을 추가하려면 (중요한 정보를 넣으면 안된다.) 
