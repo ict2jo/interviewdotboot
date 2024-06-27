@@ -19,15 +19,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 
 @RestController
 @RequestMapping("/api")
 public class AuthController {
+
 
   @Autowired
   private UserService userService;
@@ -55,13 +55,14 @@ public class AuthController {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
   }
-
   @PostMapping("/create")
   public ResponseEntity<?> createUser(@RequestBody UserVO user) {
     int res = userService.createUser(user);
     System.out.println(res);
+    System.out.println(res);
     return new ResponseEntity<>(res, HttpStatus.CREATED);
   }
+
 
   @GetMapping("/users")
   public ResponseEntity<List<UserVO>> getGuestList() {
