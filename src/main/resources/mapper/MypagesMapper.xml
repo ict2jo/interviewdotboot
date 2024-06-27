@@ -5,24 +5,38 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.MypageMapper">
     <select id="getinquiry"  resultType="MyinquiryVO">
-        SELECT * FROM Inquiry order by i_idx
+        SELECT * FROM Inquiry order by i_idx DESC
+    </select>
+    <select id="getInquiryDetail"  resultType="MyinquiryVO" parameterType="String">
+        SELECT * FROM Inquiry WHERE i_idx = #{i_idx};
     </select>
     <insert id="insertinquiry" parameterType="MyinquiryVO">
         INSERT INTO Inquiry (i_subject, i_content)
         VALUES (#{i_subject}, #{i_content})
     </insert>
-    <select id="getprofile"  resultType="MyuserVO">
-        SELECT *
+    <update id="editinquiry" parameterType="MyinquiryVO">
+        UPDATE Inquiry
+            SET i_subject = #{i_subject},
+                i_content = #{i_content}
+            WHERE i_idx = #{i_idx};
+    </update>
+    <update id="deleteinquiry" parameterType="MyinquiryVO">
+        UPDATE Inquiry
+            SET i_active = 0
+            WHERE i_idx = #{i_idx};
+    </update>
+    <select id="getprofile"  parameterType="MyuserVO" resultType="MyuserVO">
+        SELECT u.*, a.*
             FROM User_t u
             INNER JOIN Add_profile a ON u.u_idx = a.u_idx
-            WHERE u.u_idx = 1;
+            WHERE u.u_idx = #{u_idx};
     </select>
     <update id="editprofile1" parameterType="MyuserVO">
         UPDATE User_t
             SET name = #{name},
                 phonenumber = #{phonenumber},
                 email = #{email}
-            WHERE u_idx = 1;
+            WHERE u_idx = #{u_idx};
     </update>
     <update id="editprofile2" parameterType="MyuserVO">
         UPDATE Add_profile
@@ -30,7 +44,7 @@
                 p_class = #{p_class},
                 p_career = #{p_career},
                 p_location = #{p_location}
-            WHERE u_idx = 1;
+            WHERE u_idx = #{u_idx};
     </update>
     <insert id="addfavorites" parameterType="MyuserVO">
         INSERT INTO Favorites(f_num,u_idx)
@@ -40,7 +54,7 @@
         DELETE FROM Favorites
         WHERE f_num = #{f_num} AND u_idx = #{u_idx}
     </delete>
-    <select id="getstar"  resultType="MyuserVO">
+    <select id="getstar"  parameterType="String" resultType="MyuserVO">
         SELECT * FROM Favorites
         WHERE u_idx = #{u_idx};
     </select>
