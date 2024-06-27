@@ -21,6 +21,7 @@ public interface UserMapper {
   void updateUser(UserVO uvo);
   int updateUserPassword(String id, String pw);
   int resetPw(UserVO user);
+  String findUserId(String birth, String email, String name);
 }
 
 

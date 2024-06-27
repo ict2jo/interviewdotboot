@@ -46,6 +46,11 @@ public class UserService {
     return userMapper.getUser(id);
   }
 
+  public String findUserId(String birth, String email, String name) {
+    return userMapper.findUserId(birth, email, name);
+  }
+
+
   public int findUserforPw(UserVO user) {
     return userMapper.findUserforPw(user);
 }

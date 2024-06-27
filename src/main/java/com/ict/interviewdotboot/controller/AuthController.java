@@ -142,5 +142,15 @@ public ResponseEntity<String> resetPw(@RequestBody UserVO user) {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("error.");
 }
 
+@PostMapping("/findUserId")
+public ResponseEntity<String> findUserId(@RequestBody UserVO user) {
+    String id = userService.findUserId(user.getBirth(), user.getEmail(), user.getName());
+
+    if (id != null) {
+        return ResponseEntity.ok(id);
+    }
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("error.");
+}
+
 
 }

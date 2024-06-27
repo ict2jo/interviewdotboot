@@ -36,6 +36,10 @@
 
   <select id="findUserforPw">
     SELECT count(*) FROM User_t WHERE id = #{id} and name = #{name} and email = #{email}
-</select>
+  </select>
+
+  <select id="findUserId" resultType="java.lang.String">
+    SELECT id FROM User_t WHERE birth = #{birth} and name = #{name} and email = #{email}
+  </select>
 
   </mapper>
