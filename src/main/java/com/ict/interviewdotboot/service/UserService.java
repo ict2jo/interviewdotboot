@@ -40,7 +40,8 @@ public class UserService {
     return userMapper.selectUser(id);
   }
 
-  // public List<AdminVO> getAdminList() {
-  //   return userMapper.getAdminList();
-  // }
+  public int findUserforPw(UserVO user) {
+    return userMapper.findUserforPw(user);
+}
+
 }
