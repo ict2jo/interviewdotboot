@@ -5,6 +5,19 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.InterviewMapper">
     <select id="getQuestionList"  resultType="InterviewVO">
-        SELECT * FROM Question_list order by q_idx
+        SELECT q_idx,question FROM Question_list WHERE category = #{category}
     </select>
+
+    <insert id="insertResult" parameterType="InterviewVO" keyProperty="re_idx" useGeneratedKeys="true">
+        INSERT INTO Interview_re(q_idx, id, text, pose_results, sentiment)
+        VALUES (#{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
+
+        <selectKey keyProperty="re_idx" resultType="InterviewVO" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        INSERT INTO Interview_t(id, re_idx)
+        VALUES (#{id}, #{re_idx})
+    </insert>
+
 </mapper>
