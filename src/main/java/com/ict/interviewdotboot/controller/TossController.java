@@ -5,27 +5,32 @@ import com.ict.interviewdotboot.vo.TossVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/payments")
+@RequestMapping("/payments")
 public class TossController {
 
     @Autowired
     private TossService tossService;
-
-    @PostMapping("/success")
-    public ResponseEntity<?> handlePaymentResult(Model model,
-            @RequestParam("orderId") String orderId, // 클라이언트에서 전달된 주문 ID
-            @RequestParam("amount") String amount, // 클라이언트에서 전달된 결제 금액
-            @RequestParam("paymentKey") String paymentKey,
-            @RequestBody TossVO tossVO) {
+    
+    @PostMapping("/confirm")
+    public ResponseEntity<TossVO> confirmPayment(@RequestBody TossVO tvo, @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            tossService.savePayment(tossVO);
-            return ResponseEntity.ok().body("Payment successfully processed.");
+            boolean isConfirmed = tossService.confirmPayment(
+                tvo.getPaymentKey(),
+                tvo.getOrderId(),
+                tvo.getAmount(),
+                authorizationHeader
+                );
+            if (isConfirmed) {
+                return ResponseEntity.ok(new TossVO());
+            } else {
+                return ResponseEntity.status(400).body(new TossVO());
+            }
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Payment processing failed: " + e.getMessage());
+            System.out.println("컨트롤러" + e );
         }
+        return null;
     }
 }
