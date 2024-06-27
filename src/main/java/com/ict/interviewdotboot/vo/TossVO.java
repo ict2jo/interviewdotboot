@@ -8,6 +8,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TossVO {
     private String t_idx;
+    private String u_idx;
+    private String customerIdx;
     private String orderId;
     private String orderName;
     private int amount;
