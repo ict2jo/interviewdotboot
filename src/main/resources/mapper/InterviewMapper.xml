@@ -8,16 +8,21 @@
         SELECT q_idx,question FROM Question_list WHERE category = #{category}
     </select>
 
-    <insert id="insertResult" parameterType="InterviewVO" keyProperty="re_idx" useGeneratedKeys="true">
+    <insert id="insertResult" parameterType="InterviewVO" useGeneratedKeys="true" keyProperty="re_idx">
+        <!-- Interview_re 테이블에 새로운 데이터 삽입 -->
         INSERT INTO Interview_re(q_idx, id, text, pose_results, sentiment)
         VALUES (#{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
 
+        <!-- 최근에 삽입된 행의 자동 증가된 키 값을 가져오기 위해 selectKey 사용 -->
         <selectKey keyProperty="re_idx" resultType="InterviewVO" order="AFTER">
-            SELECT LAST_INSERT_ID()
+            SELECT LAST_INSERT_ID() AS re_idx
         </selectKey>
-
-        INSERT INTO Interview_t(id, re_idx)
-        VALUES (#{id}, #{re_idx})
     </insert>
+
+    <insert id="insertTable" parameterType="InterviewVO">
+        INSERT INTO Interview_t(id, re_idx,interview_date)
+        VALUES (#{id}, #{re_idx},NOW());
+    </insert>
+
 
 </mapper>
