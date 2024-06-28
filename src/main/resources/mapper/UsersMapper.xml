@@ -31,7 +31,8 @@
     <update id="updateUser" parameterType="UserVO"> Update User_t set last_login = NOW() where id =
       #{id} </update>
 
-    <update id="resetPw" parameterType="UserVO"> Update User_t set pw = #{pw} where id =
+    <update id="resetPw" parameterType="UserVO">
+       Update User_t set pw = #{pw} where id =
       #{id} </update>
 
   <select id="findUserforPw">

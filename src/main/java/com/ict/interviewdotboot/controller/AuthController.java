@@ -83,7 +83,7 @@ public class AuthController {
   @GetMapping("/idCheck")
   public ResponseEntity<Boolean> checkIdValidation(@RequestParam("id") String id) {
     UserVO uvo = userService.getUser(id);
-System.out.println(uvo);
+
     if (uvo != null) {
       System.out.println("User found with ID: " + id);
       return ResponseEntity.ok(true); // true 반환
