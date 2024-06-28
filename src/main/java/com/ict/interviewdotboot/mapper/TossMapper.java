@@ -7,6 +7,6 @@ import com.ict.interviewdotboot.vo.TossVO;
 @Mapper
 public interface TossMapper {
 
-    int savePayment(TossVO tossVO);
+    int confirmPayment(TossVO tvo);
     
 }
