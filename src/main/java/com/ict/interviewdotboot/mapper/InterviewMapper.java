@@ -11,8 +11,11 @@ public interface InterviewMapper {
 
     List<InterviewVO> getQuestionList(InterviewVO interviewVO);
 
-    void insertResult(InterviewVO interviewVO);
-
     void insertTable(InterviewVO interviewVO);
 
+    void insertResult(InterviewVO interviewVO);
+
+    List<InterviewVO> getInterviewHistory(InterviewVO interviewVO);
+
+    List<InterviewVO> getHistoryDetail(InterviewVO interviewVO);
 }

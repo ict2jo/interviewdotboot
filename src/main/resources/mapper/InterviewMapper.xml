@@ -8,21 +8,32 @@
         SELECT q_idx,question FROM Question_list WHERE category = #{category}
     </select>
 
-    <insert id="insertResult" parameterType="InterviewVO" useGeneratedKeys="true" keyProperty="re_idx">
-        <!-- Interview_re 테이블에 새로운 데이터 삽입 -->
-        INSERT INTO Interview_re(q_idx, id, text, pose_results, sentiment)
-        VALUES (#{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
+    <insert id="insertTable" parameterType="InterviewVO" useGeneratedKeys="true" keyProperty="r_idx">
+        INSERT INTO Interview_t(id, interview_date)
+        VALUES (#{id}, NOW());
 
-        <!-- 최근에 삽입된 행의 자동 증가된 키 값을 가져오기 위해 selectKey 사용 -->
-        <selectKey keyProperty="re_idx" resultType="InterviewVO" order="AFTER">
-            SELECT LAST_INSERT_ID() AS re_idx
+        <selectKey keyProperty="r_idx" resultType="InterviewVO" order="AFTER">
+            SELECT LAST_INSERT_ID() AS r_idx
         </selectKey>
     </insert>
 
-    <insert id="insertTable" parameterType="InterviewVO">
-        INSERT INTO Interview_t(id, re_idx,interview_date)
-        VALUES (#{id}, #{re_idx},NOW());
+    <insert id="insertResult" parameterType="InterviewVO">
+        INSERT INTO Interview_re(r_idx, q_idx, id, text, pose_results, sentiment)
+        VALUES (#{r_idx}, #{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
     </insert>
 
+    <select id="getInterviewHistory" parameterType="InterviewVO">
+        SELECT q.question, t.interview_date, re.text, re.r_idx
+        FROM Interview_t AS t
+        JOIN Interview_re AS re ON t.r_idx = re.r_idx
+        JOIN Question_list AS q ON re.q_idx = q.q_idx
+        WHERE t.id = #{id} AND re.id = t.id
+    </select>
 
+    <select id="getHistoryDetail" parameterType="InterviewVO">
+        select q.question, re.text , re.pose_results, re.sentiment
+        from Interview_re AS re
+        JOIN Question_list AS q ON re.q_idx = q.q_idx
+        where re.id = #{id} AND re.r_idx = #{r_idx}
+    </select>
 </mapper>

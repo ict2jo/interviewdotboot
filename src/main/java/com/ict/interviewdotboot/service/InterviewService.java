@@ -19,11 +19,19 @@ public class InterviewService {
         return interviewMapper.getQuestionList(interviewVO);
     }
 
+    public void insertTable(InterviewVO interviewVO) {
+        interviewMapper.insertTable(interviewVO);
+    }
+
     public void insertResult(InterviewVO interviewVO) {
         interviewMapper.insertResult(interviewVO);
     }
 
-    public void insertTable(InterviewVO interviewVO) {
-        interviewMapper.insertTable(interviewVO);
+    public List<InterviewVO> getInterviewHistory(InterviewVO interviewVO) {
+        return interviewMapper.getInterviewHistory(interviewVO);
+    }
+
+    public List<InterviewVO> getHistoryDetail(InterviewVO interviewVO) {
+        return interviewMapper.getHistoryDetail(interviewVO);
     }
 }
