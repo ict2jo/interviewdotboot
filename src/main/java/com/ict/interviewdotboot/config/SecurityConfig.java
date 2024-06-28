@@ -40,7 +40,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/**", "/mypage/**","/interview/**", "/introduce/**","/success/**","/payments/**").permitAll()
+                        .requestMatchers("/api/**", "/mypage/**","/interview/**", "/introduce/**","/success/**","/payments/**", "/review/**", "/comments/**").permitAll()
                 .anyRequest().authenticated()
             )
             .logout(logout -> logout
