@@ -29,7 +29,7 @@ public class TossService {
     @Value("${toss.secret.key}")
     private String tossSecretKey;
     
-    public boolean confirmPayment(String paymentKey, String orderId, int amount, String string, String authorizationHeader) {
+    public boolean confirmPayment(String paymentKey, String orderId, int amount, String authorizationHeader, String id) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             // UTF-8 인코딩 설정 추가
@@ -40,8 +40,8 @@ public class TossService {
             headers.set("Content-Type", "application/json; charset=UTF-8");
             
             String requestJson = String.format(
-                "{\"paymentKey\":\"%s\",\"orderId\":\"%s\",\"amount\":%s}",
-                paymentKey, orderId, amount
+                "{\"paymentKey\":\"%s\",\"orderId\":\"%s\",\"amount\":%s,\"userId\":\"%s\"}",
+                paymentKey, orderId, amount, id
             );
             
             HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
@@ -58,15 +58,17 @@ public class TossService {
              // JSON 응답 파싱
             ObjectMapper objectMapper = new ObjectMapper();
             TossVO tvo = objectMapper.readValue(response.getBody(), TossVO.class);
+            if (tvo.getEasyPay() != null) {
+                tvo.setAmount(tvo.getEasyPay().getAmount());
+            }
+            tvo.setId(id);
             System.out.println("파싱된 응답: " + tvo);
 
              // approvedAt 날짜 변환
             LocalDateTime approvedAt = LocalDateTime.parse(tvo.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
             String formattedApprovedAt = approvedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             tvo.setApprovedAt(formattedApprovedAt);
-
             System.out.println("금액"+tvo.getTotalAmount());
-
             // totalAmount에 따라 날짜 계산
             LocalDateTime dueDate = null;
             if (tvo.getTotalAmount() == 7900) {
@@ -76,7 +78,6 @@ public class TossService {
             } else if (tvo.getTotalAmount() == 39000) {
                 dueDate = approvedAt.plusDays(30);
             }
-
             // 시간까지 포함하여 날짜 포맷으로 변환
             if (dueDate != null) {
                 // 시간까지 포함하여 날짜 포맷으로 변환
