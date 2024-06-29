@@ -35,7 +35,11 @@ public class InterviewService {
         return interviewMapper.getHistoryDetail(interviewVO);
     }
 
-    public int deleteHistory(InterviewVO interviewVO) {
-        return interviewMapper.deleteHistory(interviewVO);
+    public int deleteHistory(List<String> r_idxList) {
+        return interviewMapper.deleteHistory(r_idxList);
+    }
+
+    public List<InterviewVO> getRandchoose(InterviewVO interviewVO) {
+        return interviewMapper.getRandchoose(interviewVO);
     }
 }

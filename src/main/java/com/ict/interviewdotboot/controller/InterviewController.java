@@ -72,8 +72,22 @@ public class InterviewController {
     }
 
     @PostMapping("/historydelete")
-    public int deleteHistory(InterviewVO interviewVO){
-        return interviewService.deleteHistory(interviewVO);
+    public ResponseEntity<String> deleteHistory(@RequestBody Map<String, List<String>> requestBody) {
+        List<String> r_idxList = requestBody.get("r_idx");
+        if (r_idxList != null && !r_idxList.isEmpty()) {
+            int deletedCount = interviewService.deleteHistory(r_idxList);
+            if (deletedCount > 0) {
+                return ResponseEntity.ok("삭제 완료");
+            } else {
+                return ResponseEntity.badRequest().body("삭제 실패");
+            }
+        } else {
+            return ResponseEntity.badRequest().body("잘못된 요청입니다.");
+        }
     }
 
+        @GetMapping("/randchoose")
+    public List<InterviewVO> getRandchoose(InterviewVO interviewVO){
+        return interviewService.getRandchoose(interviewVO);
+    }
 }
