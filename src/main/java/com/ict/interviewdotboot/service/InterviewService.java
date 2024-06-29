@@ -4,9 +4,11 @@ import com.ict.interviewdotboot.mapper.InterviewMapper;
 import com.ict.interviewdotboot.vo.InterviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class InterviewService {
 
@@ -17,7 +19,27 @@ public class InterviewService {
         return interviewMapper.getQuestionList(interviewVO);
     }
 
-    public int insertResult(InterviewVO interviewVO) {
-        return interviewMapper.insertResult(interviewVO);
+    public void insertTable(InterviewVO interviewVO) {
+        interviewMapper.insertTable(interviewVO);
+    }
+
+    public void insertResult(InterviewVO interviewVO) {
+        interviewMapper.insertResult(interviewVO);
+    }
+
+    public List<InterviewVO> getInterviewHistory(InterviewVO interviewVO) {
+        return interviewMapper.getInterviewHistory(interviewVO);
+    }
+
+    public List<InterviewVO> getHistoryDetail(InterviewVO interviewVO) {
+        return interviewMapper.getHistoryDetail(interviewVO);
+    }
+
+    public int deleteHistory(List<String> r_idxList) {
+        return interviewMapper.deleteHistory(r_idxList);
+    }
+
+    public List<InterviewVO> getRandchoose(InterviewVO interviewVO) {
+        return interviewMapper.getRandchoose(interviewVO);
     }
 }

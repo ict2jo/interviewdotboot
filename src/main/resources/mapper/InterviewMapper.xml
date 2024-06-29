@@ -8,16 +8,43 @@
         SELECT q_idx,question FROM Question_list WHERE category = #{category}
     </select>
 
-    <insert id="insertResult" parameterType="InterviewVO" keyProperty="re_idx" useGeneratedKeys="true">
-        INSERT INTO Interview_re(q_idx, id, text, pose_results, sentiment)
-        VALUES (#{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
+    <insert id="insertTable" parameterType="InterviewVO" useGeneratedKeys="true" keyProperty="r_idx">
+        INSERT INTO Interview_t(id, interview_date)
+        VALUES (#{id}, NOW());
 
-        <selectKey keyProperty="re_idx" resultType="InterviewVO" order="AFTER">
-            SELECT LAST_INSERT_ID()
+        <selectKey keyProperty="r_idx" resultType="InterviewVO" order="AFTER">
+            SELECT LAST_INSERT_ID() AS r_idx
         </selectKey>
-
-        INSERT INTO Interview_t(id, re_idx)
-        VALUES (#{id}, #{re_idx})
     </insert>
+
+    <insert id="insertResult" parameterType="InterviewVO">
+        INSERT INTO Interview_re(r_idx, q_idx, id,video_uuid, text, pose_results, sentiment,campus,intention,feedback)
+        VALUES (#{r_idx}, #{q_idx}, #{id},#{video_uuid},#{text},#{pose_results}, #{sentiment},#{campus},#{intention},#{feedback});
+    </insert>
+
+    <select id="getInterviewHistory" parameterType="InterviewVO">
+        SELECT t.r_idx, q.question, t.interview_date, re.text, re.r_idx
+        FROM Interview_t AS t
+        JOIN Interview_re AS re ON t.r_idx = re.r_idx
+        JOIN Question_list AS q ON re.q_idx = q.q_idx
+        WHERE t.id = #{id} AND re.id = t.id AND active = 1
+    </select>
+
+    <select id="getHistoryDetail" parameterType="InterviewVO">
+        select q.question, re.text , re.pose_results, re.sentiment,re.video_uuid,re.campus,re.intention,re.feedback
+        from Interview_re AS re
+        JOIN Question_list AS q ON re.q_idx = q.q_idx
+        where re.id = #{id} AND re.r_idx = #{r_idx}
+    </select>
+
+    <delete id="deleteHistory" parameterType="InterviewVO">
+        UPDATE Interview_t SET active = 0 WHERE r_idx IN
+        <foreach item="item" index="index" collection="r_idxList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="getRandchoose" resultType="InterviewVO">
+        SELECT q_idx,question FROM Question_list WHERE category = #{category} ORDER BY RAND() LIMIT 3
+    </select>
 
 </mapper>

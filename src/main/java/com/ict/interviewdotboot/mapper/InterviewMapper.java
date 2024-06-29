@@ -11,5 +11,15 @@ public interface InterviewMapper {
 
     List<InterviewVO> getQuestionList(InterviewVO interviewVO);
 
-    int insertResult(InterviewVO interviewVO);
+    void insertTable(InterviewVO interviewVO);
+
+    void insertResult(InterviewVO interviewVO);
+
+    List<InterviewVO> getInterviewHistory(InterviewVO interviewVO);
+
+    List<InterviewVO> getHistoryDetail(InterviewVO interviewVO);
+
+    int deleteHistory(@Param("r_idxList") List<String> r_idxList);
+
+    List<InterviewVO> getRandchoose(InterviewVO interviewVO);
 }
