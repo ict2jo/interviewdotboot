@@ -18,4 +18,6 @@ public interface InterviewMapper {
     List<InterviewVO> getInterviewHistory(InterviewVO interviewVO);
 
     List<InterviewVO> getHistoryDetail(InterviewVO interviewVO);
+
+    int deleteHistory(InterviewVO interviewVO);
 }

@@ -23,17 +23,24 @@
     </insert>
 
     <select id="getInterviewHistory" parameterType="InterviewVO">
-        SELECT q.question, t.interview_date, re.text, re.r_idx
+        SELECT t.r_idx, q.question, t.interview_date, re.text, re.r_idx
         FROM Interview_t AS t
         JOIN Interview_re AS re ON t.r_idx = re.r_idx
         JOIN Question_list AS q ON re.q_idx = q.q_idx
-        WHERE t.id = #{id} AND re.id = t.id
+        WHERE t.id = #{id} AND re.id = t.id AND active = 1
     </select>
 
     <select id="getHistoryDetail" parameterType="InterviewVO">
-        select q.question, re.text , re.pose_results, re.sentiment
+        select q.question, re.text , re.pose_results, re.sentiment,re.video_uuid,re.campus,re.intention,re.feedback
         from Interview_re AS re
         JOIN Question_list AS q ON re.q_idx = q.q_idx
         where re.id = #{id} AND re.r_idx = #{r_idx}
     </select>
+
+    <delete id="deleteHistory" parameterType="InterviewVO">
+        UPDATE Interview_t SET active = 0 WHERE r_idx IN
+        <foreach item="r_idx" collection="selectedIds" open="(" separator="," close=")">
+            #{r_idx}
+        </foreach>
+    </delete>
 </mapper>

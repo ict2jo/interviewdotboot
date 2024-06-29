@@ -71,5 +71,9 @@ public class InterviewController {
         return interviewService.getHistoryDetail(interviewVO);
     }
 
+    @PostMapping("/historydelete")
+    public int deleteHistory(InterviewVO interviewVO){
+        return interviewService.deleteHistory(interviewVO);
+    }
 
 }

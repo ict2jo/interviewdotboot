@@ -15,7 +15,8 @@ public class InterviewVO {
     private String sentiment; // 감정분석
     private String interview_date; // 인터뷰 한 일자
     private String video_uuid; // 영상 파일이름 저장
-    private String intention; // 뭐지
+    private String intention; // 해당 질문에 대한 질문의도
     private String feedback; // 질문 피드백
-    private String campus; // 뭐야
+    private String campus; // TEXT를 교정해준 문구
+    private String selectedIds;
 }

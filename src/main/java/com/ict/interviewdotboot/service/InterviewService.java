@@ -34,4 +34,8 @@ public class InterviewService {
     public List<InterviewVO> getHistoryDetail(InterviewVO interviewVO) {
         return interviewMapper.getHistoryDetail(interviewVO);
     }
+
+    public int deleteHistory(InterviewVO interviewVO) {
+        return interviewMapper.deleteHistory(interviewVO);
+    }
 }
