@@ -9,7 +9,7 @@ import com.ict.interviewdotboot.vo.MyuserVO;
 
 @Mapper
 public interface MypageMapper {
-    List<MyinquiryVO> getinquiry();
+    List<MyinquiryVO> getinquiry(String id);
     List<MyinquiryVO> getInquiryDetail(String i_idx);
     int insertinquiry(MyinquiryVO myinquiryVO);
     int editinquiry(MyinquiryVO myinquiryVO);
@@ -19,5 +19,5 @@ public interface MypageMapper {
     int editprofile2(MyuserVO myuserVO);
     int addfavorites(MyuserVO myuserVO);
     int deletefavorites(MyuserVO myuserVO);
-    List<MyuserVO> getstar(String i_idx);
+    List<MyuserVO> getstar(String id);
 }

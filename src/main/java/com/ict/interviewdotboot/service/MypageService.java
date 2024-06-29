@@ -15,8 +15,8 @@ public class MypageService {
     @Autowired
     private MypageMapper mypageMapper;
 
-    public List<MyinquiryVO> getinquiry(){
-        return mypageMapper.getinquiry();
+    public List<MyinquiryVO> getinquiry(String id){
+        return mypageMapper.getinquiry(id);
     }
     
     public int insertinquiry(MyinquiryVO myinquiryVO){
@@ -56,7 +56,7 @@ public class MypageService {
     public int deletefavorites(MyuserVO myuserVO){
         return mypageMapper.deletefavorites(myuserVO);
     }
-    public List<MyuserVO> getstar( String u_idx){
-        return mypageMapper.getstar(u_idx);
+    public List<MyuserVO> getstar( String id){
+        return mypageMapper.getstar(id);
     }
 }
