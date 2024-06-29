@@ -6,8 +6,11 @@
     <select id="getComments" resultType="CommentVO">
         SELECT * FROM Review_com  WHERE r_idx = #{r_idx}
     </select>
+    <!-- <select id="getComments" resultType="CommentVO">
+        SELECT * FROM Review_com  WHERE r_idx = #{r_idx} ORDER BY re_regdate DESC
+    </select> -->
     <insert id="insertComment" parameterType="CommentVO">
-        INSERT INTO Review_com (re_idx, u_idx, r_idx, re_content, re_regdate)
-        VALUES(#{re_idx}, #{u_idx}, #{r_idx}, #{re_content}, sysdate())
+        INSERT INTO Review_com (re_idx, r_idx, id, re_content, re_regdate)
+        VALUES(#{re_idx}, #{r_idx}, #{id},  #{re_content}, sysdate())
     </insert>
 </mapper>

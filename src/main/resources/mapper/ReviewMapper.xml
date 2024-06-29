@@ -5,14 +5,14 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.ReviewMapper">
     <select id="getReviewList" resultType="ReviewVO">
-        SELECT * FROM Review_t ORDER BY r_idx
+        SELECT * FROM Review_t ORDER BY r_idx 
     </select>
     <select id="getReviewDetail" resultType="ReviewVO">
         SELECT * FROM Review_t WHERE r_idx = #{r_idx}
     </select>
     <insert id="insertReview" parameterType="ReviewVO">
-        INSERT INTO Review_t(r_id, u_idx, r_title, r_content, r_company, r_regdate)
-        VALUES(#{r_id}, #{u_idx}, #{r_title}, #{r_content}, #{r_company}, sysdate())
+        INSERT INTO Review_t(r_id, r_title, r_content, r_company, r_regdate)
+        VALUES(#{r_id}, #{r_title}, #{r_content}, #{r_company}, sysdate())
     </insert>
     <update id="updateReview" parameterType="ReviewVO">
         UPDATE Review_t
