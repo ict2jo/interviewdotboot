@@ -1,11 +1,15 @@
 package com.ict.interviewdotboot.controller;
 
 import com.ict.interviewdotboot.service.TossService;
+import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.TossVO;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/payments")
@@ -36,4 +40,11 @@ public class TossController {
         }
         return null;
     }
+
+    @GetMapping("/userPay")
+    public List<TossVO> userPay(@RequestParam("id") String id) {
+        System.out.println("오니니니니니니니니니");
+        return tossService.userPay(id);
+    }
+
 }

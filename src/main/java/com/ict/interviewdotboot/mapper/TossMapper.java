@@ -1,5 +1,7 @@
 package com.ict.interviewdotboot.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ict.interviewdotboot.vo.TossVO;
@@ -8,5 +10,6 @@ import com.ict.interviewdotboot.vo.TossVO;
 public interface TossMapper {
 
     int confirmPayment(TossVO tvo);
-    
+    int userPayCount(TossVO tvo);
+    List<TossVO> userPay(String id);
 }

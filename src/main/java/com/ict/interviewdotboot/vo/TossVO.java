@@ -14,9 +14,11 @@ public class TossVO {
     private String orderId;
     private String orderName;
     private int amount;
-    private int totalAmount;
     private String approvedAt;
-    private String dueDate;
+    private int payCount;
+    private int statusCount;
+    private String payStatus;
+    private String refund;
     private String paymentKey;
     private String authorizationHeader;
     private EasyPay easyPay;

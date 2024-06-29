@@ -5,7 +5,16 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.TossMapper">
     <insert id="confirmPayment" parameterType="TossVO">
-        INSERT INTO Toss_t(u_idx, id, orderId, orderName, amount, approvedAt, dueDate)
-        VALUES(#{u_idx}, #{id}, #{orderId}, #{orderName}, #{amount}, #{approvedAt}, #{dueDate})
+        INSERT INTO Toss_t(id, orderId, orderName, amount, approvedAt, payCount, statusCount, payStatus, refund)
+        VALUES(#{id}, #{orderId}, #{orderName}, #{amount}, #{approvedAt}, #{payCount}, #{payCount}, #{payStatus}, #{refund})
     </insert>
+    <update id="userPayCount" parameterType="TossVO">
+        update User_t set payCount = payCount + #{payCount} where id=#{id} 
+    </update>
+
+    <select id="userPay" parameterType="String" resultType="TossVO">
+        select *
+        from Toss_t
+        where id = #{id}
+    </select>
 </mapper>

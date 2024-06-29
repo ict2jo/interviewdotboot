@@ -3,6 +3,7 @@ package com.ict.interviewdotboot.service;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,36 +65,37 @@ public class TossService {
             tvo.setId(id);
             System.out.println("파싱된 응답: " + tvo);
 
-             // approvedAt 날짜 변환
+            // approvedAt 날짜 변환
             LocalDateTime approvedAt = LocalDateTime.parse(tvo.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
             String formattedApprovedAt = approvedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             tvo.setApprovedAt(formattedApprovedAt);
-            System.out.println("금액"+tvo.getTotalAmount());
-            // totalAmount에 따라 날짜 계산
-            LocalDateTime dueDate = null;
-            if (tvo.getTotalAmount() == 7900) {
-                dueDate = approvedAt.plusDays(3);
-            } else if (tvo.getTotalAmount() == 13900) {
-                dueDate = approvedAt.plusDays(7);
-            } else if (tvo.getTotalAmount() == 39000) {
-                dueDate = approvedAt.plusDays(30);
+
+            // 이용권 횟수
+            tvo.setPayCount(tvo.getAmount()/1000); 
+
+            if (tvo.getAmount() == 1000) {
+                tvo.setOrderName("1회 이용권");
+            } else if (tvo.getAmount() == 10000) {
+                tvo.setOrderName("10회 이용권");
+            } else {
+                tvo.setOrderName("내맘대로 이용권");
             }
-            // 시간까지 포함하여 날짜 포맷으로 변환
-            if (dueDate != null) {
-                // 시간까지 포함하여 날짜 포맷으로 변환
-                String formattedDueDate = dueDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                tvo.setDueDate(formattedDueDate);
-                System.out.println("만기"+tvo.getDueDate());
-            }
+
+            tvo.setPayStatus("결제완료");
 
             // DB
             int result = tossMapper.confirmPayment(tvo);
+            int result2 = tossMapper.userPayCount(tvo);
 
             return response.getStatusCode().is2xxSuccessful();
         } catch (Exception e) {
             System.out.println("서비스 : "+e);
         }
         return true;
+    }
+
+    public List<TossVO> userPay(String id) {
+        return tossMapper.userPay(id);
     }
 }
 
