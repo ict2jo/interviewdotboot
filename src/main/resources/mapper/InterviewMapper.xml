@@ -18,8 +18,8 @@
     </insert>
 
     <insert id="insertResult" parameterType="InterviewVO">
-        INSERT INTO Interview_re(r_idx, q_idx, id, text, pose_results, sentiment)
-        VALUES (#{r_idx}, #{q_idx}, #{id}, #{text}, #{pose_results}, #{sentiment});
+        INSERT INTO Interview_re(r_idx, q_idx, id,video_uuid, text, pose_results, sentiment,campus,intention,feedback)
+        VALUES (#{r_idx}, #{q_idx}, #{id},#{video_uuid},#{text},#{pose_results}, #{sentiment},#{campus},#{intention},#{feedback});
     </insert>
 
     <select id="getInterviewHistory" parameterType="InterviewVO">

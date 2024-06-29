@@ -14,4 +14,8 @@ public class InterviewVO {
     private String pose_results; // 어깨 움직임 횟수
     private String sentiment; // 감정분석
     private String interview_date; // 인터뷰 한 일자
+    private String video_uuid; // 영상 파일이름 저장
+    private String intention; // 뭐지
+    private String feedback; // 질문 피드백
+    private String campus; // 뭐야
 }

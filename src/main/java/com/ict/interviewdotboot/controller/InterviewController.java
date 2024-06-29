@@ -48,6 +48,10 @@ public class InterviewController {
             resultVO.setR_idx(r_idx);
             resultVO.setQ_idx(String.valueOf(result.get("q_idx")));
             resultVO.setId(interviewVO.getId());
+            resultVO.setVideo_uuid((String) result.get("video_uuid"));
+            resultVO.setIntention((String) result.get("intention"));
+            resultVO.setFeedback((String) result.get("feedback"));
+            resultVO.setCampus((String) result.get("campus"));
             resultVO.setText((String) result.get("text"));
             resultVO.setPose_results((String) result.get("pose_results"));
             resultVO.setSentiment((String) result.get("sentiment"));
