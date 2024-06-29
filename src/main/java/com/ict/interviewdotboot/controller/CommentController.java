@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @RestController
@@ -22,10 +25,12 @@ public class CommentController {
     @Autowired
     private CommentsService commentsService;
 
-   @GetMapping("/comment")
-    public List<CommentVO> getComments() {
-        return commentsService.getComments();
-    } 
+    @GetMapping("/comment")
+    public List<CommentVO> getComments(String r_idx) {
+        List<CommentVO> list = commentsService.getComments(r_idx);   
+        System.out.println(list);
+        return list;
+    }  
 
     @PostMapping("/postcomment")
     public ResponseEntity<String> insertComment(@RequestBody CommentVO commentsVO) {

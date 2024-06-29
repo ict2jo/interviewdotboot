@@ -14,9 +14,14 @@ public class CommentsService {
     @Autowired
     private CommentsMapper commentsMapper;
 
-    public List<CommentVO> getComments() {
-        return commentsMapper.getComments();
+    public List<CommentVO> getComments(String r_idx) {
+        return commentsMapper.getComments(r_idx);
     } 
+
+    /* public List<CommentVO> getComments(String r_idx) {
+        return commentsMapper.getComments(r_idx);
+    } */
+
     public boolean insertComment(CommentVO commentVO){
         int res = commentsMapper.insertComment(commentVO);
         return res > 0;

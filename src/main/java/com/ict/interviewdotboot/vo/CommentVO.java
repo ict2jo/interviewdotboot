@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class CommentVO {
-    private String re_idx, r_idx, u_idx, re_content, hit, group, step, lev, active;
+    private String re_idx, r_idx, u_idx, id, re_content, hit, group, step, lev, active;
 }

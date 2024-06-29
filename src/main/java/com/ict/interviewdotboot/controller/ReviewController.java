@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -46,7 +48,7 @@ public class ReviewController {
         boolean res = reviewService.insertReview(reviewVO);
         System.out.println("res : " + res);
         if(res){
-            return ResponseEntity.ok("Okay");
+            return ResponseEntity.ok("리뷰 작성 : Okay");
         }else{
             return ResponseEntity.status(401).body("NO");
         }
@@ -69,6 +71,7 @@ public class ReviewController {
     public List<CommentVO> getComments(@RequestParam("r_idx") String r_idx) {
         return reviewService.getComments(r_idx);
     } */
+    
     
     
 }
