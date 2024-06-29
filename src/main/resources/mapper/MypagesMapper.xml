@@ -5,14 +5,17 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.MypageMapper">
     <select id="getinquiry"  resultType="MyinquiryVO">
-        SELECT * FROM Inquiry order by i_idx DESC
+        SELECT * FROM Inquiry 
+            WHERE id = #{id}
+            ORDER BY i_idx DESC;
+
     </select>
     <select id="getInquiryDetail"  resultType="MyinquiryVO" parameterType="String">
         SELECT * FROM Inquiry WHERE i_idx = #{i_idx};
     </select>
     <insert id="insertinquiry" parameterType="MyinquiryVO">
-        INSERT INTO Inquiry (i_subject, i_content)
-        VALUES (#{i_subject}, #{i_content})
+        INSERT INTO Inquiry (i_subject, i_content, id)
+        VALUES (#{i_subject}, #{i_content},#{id})
     </insert>
     <update id="editinquiry" parameterType="MyinquiryVO">
         UPDATE Inquiry
@@ -22,14 +25,14 @@
     </update>
     <update id="deleteinquiry" parameterType="MyinquiryVO">
         UPDATE Inquiry
-            SET i_active = 0
-            WHERE i_idx = #{i_idx};
+            SET i_active = 1
+            WHERE idx = #{i_idx};
     </update>
     <select id="getprofile"  parameterType="MyuserVO" resultType="MyuserVO">
         SELECT u.*, a.*
             FROM User_t u
             INNER JOIN Add_profile a ON u.u_idx = a.u_idx
-            WHERE u.u_idx = #{u_idx};
+            WHERE u.id = #{id};
     </select>
     <update id="editprofile1" parameterType="MyuserVO">
         UPDATE User_t
@@ -47,15 +50,15 @@
             WHERE u_idx = #{u_idx};
     </update>
     <insert id="addfavorites" parameterType="MyuserVO">
-        INSERT INTO Favorites(f_num,u_idx)
-        VALUES (#{f_num},#{u_idx})
+        INSERT INTO Favorites(f_num,id)
+        VALUES (#{f_num},#{id})
     </insert>
     <delete id="deletefavorites" parameterType="MyuserVO">
         DELETE FROM Favorites
-        WHERE f_num = #{f_num} AND u_idx = #{u_idx}
+        WHERE f_num = #{f_num} AND id = #{id}
     </delete>
     <select id="getstar"  parameterType="String" resultType="MyuserVO">
-        SELECT * FROM Favorites
-        WHERE u_idx = #{u_idx};
+        SELECT f_num FROM Favorites
+        WHERE id = #{id};
     </select>
 </mapper>

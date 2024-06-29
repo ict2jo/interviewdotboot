@@ -28,8 +28,8 @@ public class MypageController {
 
     // 1:1문의
     @GetMapping("/inquiry")
-    public List<MyinquiryVO> getinquiry() {
-        return mypageService.getinquiry();
+    public List<MyinquiryVO> getinquiry(@RequestParam("id") String id) {
+        return mypageService.getinquiry(id);
     }
 
     @GetMapping("/inquirydetail")
@@ -42,7 +42,7 @@ public class MypageController {
         return mypageService.insertinquiry(myinquiryVO);
     }
     @PostMapping("/inquiryedit")
-    public int editinquiry(@RequestBody MyinquiryVO myinquiryVO) {
+    public int editinquiry(MyinquiryVO myinquiryVO) {
         return mypageService.editinquiry(myinquiryVO);
     }
     
@@ -71,9 +71,9 @@ public class MypageController {
         return mypageService.deletefavorites(myuserVO);
     }
 
-    @GetMapping("/star")
-    public List<MyuserVO> getstar(@RequestParam("u_idx") String u_idx) {
-        return mypageService.getstar(u_idx);
+    @GetMapping("/getstar")
+    public List<MyuserVO> getstar(@RequestParam("id") String id) {
+        return mypageService.getstar(id);
     }
 
     
