@@ -1,7 +1,6 @@
 package com.ict.interviewdotboot.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 import java.util.List;
@@ -15,6 +14,7 @@ public class TossVO {
     private String orderId;
     private String orderName;
     private int amount;
+    private int totalAmount;
     private int cancelAmount;
     private String approvedAt;
     private int payCount;
@@ -26,11 +26,12 @@ public class TossVO {
     private String authorizationHeader;
     private EasyPay easyPay;
     private List<Cancel> cancels;
+    private String provider;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class EasyPay {
-        @JsonProperty("amount")
+        private String provider;
         private int amount;
     }
 
