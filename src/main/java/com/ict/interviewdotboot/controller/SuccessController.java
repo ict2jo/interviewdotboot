@@ -48,6 +48,7 @@ public class SuccessController {
     }
     @PostMapping("/deletesuccess")
     public int deleteSuccess(@RequestBody SuccessVO successVO) {
+        successVO.setActive("1");
         return successService.deleteSuccess(successVO);
     }
 }

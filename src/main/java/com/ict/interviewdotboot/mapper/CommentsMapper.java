@@ -12,4 +12,5 @@ public interface CommentsMapper {
     /* List<CommentVO> getComments(String r_idx); */
     int insertComment(CommentVO commentsVO);
     int updateComment(CommentVO commentVO);
+    int deleteComment(CommentVO commentVO);
 }

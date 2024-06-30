@@ -30,4 +30,8 @@ public class CommentsService {
     public int updateComment(CommentVO commentVO){
         return commentsMapper.updateComment(commentVO);
     }
+
+    public int deleteComment(CommentVO commentVO){
+        return commentsMapper.deleteComment(commentVO);
+    }
 }

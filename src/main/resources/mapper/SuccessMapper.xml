@@ -11,8 +11,8 @@
         SELECT * FROM Success_t WHERE s_idx = #{s_idx}
     </select>
     <insert id="insertSuccess" parameterType="SuccessVO">
-        INSERT INTO Success_t(s_id, u_idx, s_title, s_content, s_company, s_regdate)
-        VALUES(#{s_id}, #{u_idx}, #{s_title}, #{s_content}, #{s_company}, sysdate())
+        INSERT INTO Success_t(s_id, s_title, s_content, s_company, s_regdate)
+        VALUES(#{s_id}, #{s_title}, #{s_content}, #{s_company}, sysdate())
     </insert>
     <update id="updateSuccess" parameterType="SuccessVO">
         UPDATE Success_t
@@ -20,7 +20,8 @@
         WHERE s_idx = #{s_idx}
     </update>
     <delete id="deleteSuccess" parameterType="SuccessVO">
-        DELETE FROM Success_t
+        DELETE Success_t
+        SET active = #{active}
         WHERE s_idx = #{s_idx}
     </delete>
 </mapper>
