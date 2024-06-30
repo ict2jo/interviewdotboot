@@ -11,7 +11,9 @@ public interface TossMapper {
 
     int confirmPayment(TossVO tvo);
     int userPayCount(TossVO tvo);
+
     int cancelPayment(TossVO tvo);
     int userPayCount2(TossVO tvo);
+    
     List<TossVO> userPay(String id);
 }
