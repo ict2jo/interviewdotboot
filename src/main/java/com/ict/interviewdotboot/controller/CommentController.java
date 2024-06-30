@@ -43,4 +43,10 @@ public class CommentController {
             return ResponseEntity.status(401).body("답글 NO");
         }
     }
+
+    @PostMapping("/updatecomment")
+    public int updateComment(@RequestBody CommentVO commentVO) {
+        return commentsService.updateComment(commentVO);
+    }
+    
 }

@@ -3,7 +3,6 @@ package com.ict.interviewdotboot.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ict.interviewdotboot.vo.CommentVO;
 
@@ -12,4 +11,5 @@ public interface CommentsMapper {
     List<CommentVO> getComments(String r_idx);
     /* List<CommentVO> getComments(String r_idx); */
     int insertComment(CommentVO commentsVO);
+    int updateComment(CommentVO commentVO);
 }

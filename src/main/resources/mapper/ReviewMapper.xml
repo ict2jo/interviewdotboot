@@ -21,7 +21,7 @@
     </update>
     <update id="deleteReview" parameterType="ReviewVO">
         UPDATE Review_t
-        SET active = '0'
+        SET active = #{active}
         WHERE r_idx = #{r_idx}
     </update>
 </mapper>
