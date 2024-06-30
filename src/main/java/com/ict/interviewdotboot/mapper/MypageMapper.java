@@ -15,6 +15,7 @@ public interface MypageMapper {
     int editinquiry(MyinquiryVO myinquiryVO);
     int deleteinquiry(String i_idx);
     List<MyuserVO> getprofile(MyuserVO myuserVO);
+    int insertprofile(String u_idx);
     int editprofile1(MyuserVO myuserVO);
     int editprofile2(MyuserVO myuserVO);
     int addfavorites(MyuserVO myuserVO);

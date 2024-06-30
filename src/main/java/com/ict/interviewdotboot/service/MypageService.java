@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.interviewdotboot.mapper.MypageMapper;
 import com.ict.interviewdotboot.vo.MyinquiryVO;
@@ -36,7 +38,9 @@ public class MypageService {
     public List<MyuserVO> getprofile(MyuserVO myuserVO){
         return mypageMapper.getprofile(myuserVO);
     }
-
+    public int insertprofile(String u_idx){
+        return mypageMapper.insertprofile(u_idx);
+    }
     @Transactional
     public int editprofile(MyuserVO myuserVO) {
         int result1 = mypageMapper.editprofile1(myuserVO);
