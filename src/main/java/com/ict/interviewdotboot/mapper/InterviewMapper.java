@@ -22,4 +22,8 @@ public interface InterviewMapper {
     int deleteHistory(@Param("r_idxList") List<String> r_idxList);
 
     List<InterviewVO> getRandchoose(InterviewVO interviewVO);
+
+    int getPayCount(InterviewVO interviewVO);
+
+    int minusPayCount(InterviewVO interviewVO);
 }
