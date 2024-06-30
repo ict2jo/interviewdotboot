@@ -34,6 +34,10 @@
             INNER JOIN Add_profile a ON u.u_idx = a.u_idx
             WHERE u.id = #{id};
     </select>
+    <select id="insertprofile"  parameterType="String" resultType="MyuserVO">
+        INSERT INTO Add_profile (p_job, p_class, p_career, p_location, u_idx)
+        VALUES (null,null,null,null,#{u_idx})
+    </select>
     <update id="editprofile1" parameterType="MyuserVO">
         UPDATE User_t
             SET name = #{name},

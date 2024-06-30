@@ -55,6 +55,11 @@ public class MypageController {
     public List<MyuserVO> getprofile(MyuserVO myuserVO) {
         return mypageService.getprofile(myuserVO);
     }
+    //마이페이지
+    @PostMapping("/selfprofileinsert")
+    public int insertprofile(@RequestParam("u_idx") String u_idx) {
+        return mypageService.insertprofile(u_idx);
+    }
 
     @PostMapping("/editprofile")
     public int editprofile(@RequestBody MyuserVO myuserVO) {
