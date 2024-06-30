@@ -14,8 +14,13 @@
         VALUES(#{re_idx}, #{r_idx}, #{id},  #{re_content}, sysdate())
     </insert>
     <update id="updateComment" parameterType="CommentVO">
-        UPDATE Review_comm
+        UPDATE Review_com
         SET re_content = #{re_content}
+        WHERE re_idx = #{re_idx}
+    </update>
+    <update id="deleteComment" parameterType="CommentVO">
+        UPDATE Review_com
+        SET active = #{active}
         WHERE re_idx = #{re_idx}
     </update>
 </mapper>

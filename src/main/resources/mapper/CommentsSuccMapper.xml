@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ict.interviewdotboot.mapper.CommentsSuccMapper">
+    <select id="getComments" resultType="CommentsSuccVO">
+        SELECT * FROM Success_com WHERE s_idx = #{s_idx}
+    </select>
+    <insert id="insertComment" parameterType="CommentsSuccVO">
+        INSERT INTO Success_com(su_idx, s_idx, id, su_content, su_regdate)
+        VALUES(#{su_idx}, #{s_idx}, #{id}, #{su_content}, sysdate())
+    </insert>
+    <update id="updateComment" parameterType="CommentsSuccVO">
+        UPDATE Success_com
+        SET su_content = #{su_content}
+        WHERE su_idx = #{su_idx}
+    </update>
+    <update id="deleteComment" parameterType="CommentsSuccVO">
+        UPDATE Success_com
+        SET active = #{active}
+        WHERE su_idx = #{su_idx}
+    </update>
+</mapper>

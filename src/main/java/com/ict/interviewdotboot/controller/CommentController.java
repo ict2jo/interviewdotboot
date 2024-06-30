@@ -25,12 +25,14 @@ public class CommentController {
     @Autowired
     private CommentsService commentsService;
 
+    // 면접 후기 댓글
     @GetMapping("/comment")
     public List<CommentVO> getComments(String r_idx) {
         List<CommentVO> list = commentsService.getComments(r_idx);   
         System.out.println(list);
         return list;
-    }  
+    } 
+
 
     @PostMapping("/postcomment")
     public ResponseEntity<String> insertComment(@RequestBody CommentVO commentsVO) {
@@ -48,5 +50,12 @@ public class CommentController {
     public int updateComment(@RequestBody CommentVO commentVO) {
         return commentsService.updateComment(commentVO);
     }
+
+    @PostMapping("/deletecomment")
+    public int deleteComment(@RequestBody CommentVO commentVO) {
+        commentVO.setActive("1");
+        return commentsService.deleteComment(commentVO);
+    }
+    
     
 }
