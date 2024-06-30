@@ -63,6 +63,7 @@ public class ReviewController {
 
     @PostMapping("/deletereview")
     public int deleteReview(@RequestBody ReviewVO reviewVO) {
+        reviewVO.setActive("1");
         return reviewService.deleteReview(reviewVO);
     }
 

@@ -26,4 +26,8 @@ public class CommentsService {
         int res = commentsMapper.insertComment(commentVO);
         return res > 0;
     }
+
+    public int updateComment(CommentVO commentVO){
+        return commentsMapper.updateComment(commentVO);
+    }
 }

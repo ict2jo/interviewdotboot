@@ -13,4 +13,9 @@
         INSERT INTO Review_com (re_idx, r_idx, id, re_content, re_regdate)
         VALUES(#{re_idx}, #{r_idx}, #{id},  #{re_content}, sysdate())
     </insert>
+    <update id="updateComment" parameterType="CommentVO">
+        UPDATE Review_comm
+        SET re_content = #{re_content}
+        WHERE re_idx = #{re_idx}
+    </update>
 </mapper>
