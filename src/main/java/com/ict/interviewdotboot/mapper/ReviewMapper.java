@@ -14,6 +14,6 @@ public interface ReviewMapper {
     int insertReview(ReviewVO reviewVO);    
     int updateReview(ReviewVO reviewVO);
     int deleteReview(ReviewVO reviewVO);
-    List<CommentVO> getComments();
-    int insertComment(CommentVO commentsVO);
+    /* List<CommentVO> getComments();
+    int insertComment(CommentVO commentsVO); */
 }

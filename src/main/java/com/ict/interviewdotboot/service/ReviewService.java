@@ -42,12 +42,12 @@ public class ReviewService {
         return reviewMapper.deleteReview(reviewVO);
     }
 
-    public List<CommentVO> getComments(){
+    /* public List<CommentVO> getComments(){
         return reviewMapper.getComments();
     }
 
     public boolean insertComment(CommentVO commentsVO){
         int res2 = reviewMapper.insertComment(commentsVO);
         return res2 > 0;
-    }
+    } */
 }
