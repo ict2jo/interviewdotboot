@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class UserVO implements UserDetails{
 
-  private String u_idx,id,name,email,birth, pw, phonenumber, u_regdate,u_status,active,u_report,u_img,Field;
+  private String u_idx,id,name,email,birth, pw, phonenumber, u_regdate,u_status,active,u_report,u_img,Field, correctedEssay;
 private String kakao = "";
   private String naver = "";
   private String google = "";
