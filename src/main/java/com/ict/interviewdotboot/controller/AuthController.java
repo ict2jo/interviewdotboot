@@ -83,7 +83,7 @@ public class AuthController {
   @GetMapping("/idCheck")
   public ResponseEntity<Boolean> checkIdValidation(@RequestParam("id") String id) {
     UserVO uvo = userService.getUser(id);
-System.out.println(uvo);
+
     if (uvo != null) {
       System.out.println("User found with ID: " + id);
       return ResponseEntity.ok(true); // true 반환
@@ -138,6 +138,16 @@ public ResponseEntity<String> resetPw(@RequestBody UserVO user) {
 
     if (reset>0) {
         return ResponseEntity.ok("Password successfully changed");
+    }
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("error.");
+}
+
+@PostMapping("/findUserId")
+public ResponseEntity<String> findUserId(@RequestBody UserVO user) {
+    String id = userService.findUserId(user.getBirth(), user.getEmail(), user.getName());
+
+    if (id != null) {
+        return ResponseEntity.ok(id);
     }
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("error.");
 }
