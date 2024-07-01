@@ -20,7 +20,7 @@
         WHERE s_idx = #{s_idx}
     </update>
     <delete id="deleteSuccess" parameterType="SuccessVO">
-        DELETE Success_t
+        UPDATE Success_t
         SET active = #{active}
         WHERE s_idx = #{s_idx}
     </delete>
