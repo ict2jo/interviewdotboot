@@ -7,6 +7,6 @@
     <update id="introduceUpdate" parameterType="UserVO">
         update User_t
         set Field = #{Field}
-        WHERE u_idx = #{u_idx};
+        WHERE id = #{id};
     </update>
 </mapper>

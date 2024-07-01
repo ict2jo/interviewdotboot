@@ -8,6 +8,7 @@ import com.ict.interviewdotboot.service.OpenaiService;
 import com.ict.interviewdotboot.vo.UserVO;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -17,8 +18,8 @@ public class OpenaiController {
     private OpenaiService openaiService;
 
     @PostMapping("/save")
-    public int introduceUpdate(UserVO uvo) {
-        
+    public int introduceUpdate(@RequestBody UserVO uvo, String correctedEssay) {
+        uvo.setField(uvo.getCorrectedEssay());
         return openaiService.introduceUpdate(uvo);
     }
     
