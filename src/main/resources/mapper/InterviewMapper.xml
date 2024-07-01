@@ -47,4 +47,14 @@
         SELECT q_idx,question FROM Question_list WHERE category = #{category} ORDER BY RAND() LIMIT 3
     </select>
 
+    <select id="getPayCount" resultType="int">
+        SELECT payCount FROM User_t WHERE id = #{id}
+    </select>
+
+    <update id="minusPayCount" parameterType="InterviewVO">
+        UPDATE User_t
+        SET payCount = payCount - 1
+        WHERE id = #{id}
+    </update>
+
 </mapper>

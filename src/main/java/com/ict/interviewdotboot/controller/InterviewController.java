@@ -86,8 +86,16 @@ public class InterviewController {
         }
     }
 
-        @GetMapping("/randchoose")
+    @GetMapping("/randchoose")
     public List<InterviewVO> getRandchoose(InterviewVO interviewVO){
         return interviewService.getRandchoose(interviewVO);
+    }
+    @GetMapping("/checkpay")
+    public int getPayCount(InterviewVO interviewVO){
+        return interviewService.getPayCount(interviewVO);
+    }
+    @PostMapping("minuspay")
+    public int minusPayCount(InterviewVO interviewVO){
+        return interviewService.minusPayCount(interviewVO);
     }
 }

@@ -19,4 +19,5 @@ public class InterviewVO {
     private String feedback; // 질문 피드백
     private String campus; // TEXT를 교정해준 문구
     private String selectedIds;
+    private int payCount;
 }

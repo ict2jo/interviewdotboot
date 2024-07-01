@@ -42,4 +42,12 @@ public class InterviewService {
     public List<InterviewVO> getRandchoose(InterviewVO interviewVO) {
         return interviewMapper.getRandchoose(interviewVO);
     }
+
+    public int getPayCount(InterviewVO interviewVO) {
+        return interviewMapper.getPayCount(interviewVO);
+    }
+
+    public int minusPayCount(InterviewVO interviewVO) {
+        return interviewMapper.minusPayCount(interviewVO);
+    }
 }
