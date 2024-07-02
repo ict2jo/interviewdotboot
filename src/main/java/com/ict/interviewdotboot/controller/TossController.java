@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.interviewdotboot.service.TossService;
+import com.ict.interviewdotboot.vo.SuccessVO;
 import com.ict.interviewdotboot.vo.TossVO;
 
 
@@ -46,29 +47,35 @@ public class TossController {
         return null;
     }
 
-    @PostMapping("/cancel")
-    public ResponseEntity<TossVO> cancelPayment(@RequestBody TossVO tvo, @RequestHeader("Authorization") String authorizationHeader) {
-        try {
-            System.out.println("티아이디"+tvo.getT_idx());
-            System.out.println("페이먼츠키"+tvo.getPaymentKey());
-            boolean isCanceled = tossService.cancelPayment(
-                tvo.getPaymentKey(),
-                tvo.getT_idx(),
-                authorizationHeader,
-                tvo.getId(),
-                tvo.getCancelReason()
-                );
-            if (isCanceled) {
-                return ResponseEntity.ok(new TossVO());
-            } else {
-                return ResponseEntity.status(400).body(new TossVO());
-            }
-        } catch (Exception e) {
-            System.out.println("컨트롤러" + e );
-        }
-        return null;
-    }
+    // @PostMapping("/cancel")
+    // public ResponseEntity<TossVO> cancelPayment(@RequestBody TossVO tvo, @RequestHeader("Authorization") String authorizationHeader) {
+    //     try {
+    //         System.out.println("티아이디"+tvo.getT_idx());
+    //         System.out.println("페이먼츠키"+tvo.getPaymentKey());
+    //         System.out.println("z키킼키키" + authorizationHeader);
+    //         boolean isCanceled = tossService.cancelPayment(
+    //             tvo.getPaymentKey(),
+    //             tvo.getT_idx(),
+    //             authorizationHeader,
+    //             tvo.getId(),
+    //             tvo.getCancelReason()
+    //             );
+    //         if (isCanceled) {
+    //             return ResponseEntity.ok(new TossVO());
+    //         } else {
+    //             return ResponseEntity.status(400).body(new TossVO());
+    //         }
+    //     } catch (Exception e) {
+    //         System.out.println("컨트롤러" + e );
+    //     }
+    //     return null;
+    // }
 
+
+    @PostMapping("/cancel")
+    public int cancelPayment(@RequestBody TossVO tvo) {
+        return tossService.cancelPayment(tvo);
+    }
 
     @GetMapping("/userPay")
     public List<TossVO> userPay(@RequestParam("id") String id) {
