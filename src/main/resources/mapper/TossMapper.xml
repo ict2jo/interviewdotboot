@@ -5,26 +5,41 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.TossMapper">
     <insert id="confirmPayment" parameterType="TossVO">
-        INSERT INTO Toss_t(id, orderId, orderName, amount, approvedAt, provider, payCount, statusCount, payStatus, cancelReason, canceledAt, paymentKey)
-        VALUES(#{id}, #{orderId}, #{orderName}, #{totalAmount}, #{approvedAt}, #{provider}, #{payCount}, #{payCount}, #{payStatus}, #{cancelReason}, #{canceledAt}, #{paymentKey})
+        INSERT INTO Toss_t(id, orderId, orderName, amount, approvedAt, provider, statusCount, remainCount, payStatus, cancelReason, canceledAt, paymentKey)
+        VALUES(#{id}, #{orderId}, #{orderName}, #{totalAmount}, #{approvedAt}, #{provider}, #{statusCount}, #{statusCount}, #{payStatus}, #{cancelReason}, #{canceledAt}, #{paymentKey})
     </insert>
     <update id="userPayCount" parameterType="TossVO">
-        update User_t set payCount = payCount + #{payCount} where id=#{id} 
+        update User_t set payCount = payCount + #{statusCount} where id=#{id} 
     </update>
 
-    <update id="cancelPayment" parameterType="TossVO">
+
+    <select id="payCountSelect" parameterType="String" resultType="TossVO">
+        select t.statusCount, u.payCount
+        from Toss_t as t
+        join User_t as u on u.id = t.id
+        where u.id=#{id} and t.t_idx=#{t_idx}
+    </select>
+
+
+    <!-- <update id="cancelPayment" parameterType="TossVO">
         update Toss_t 
         set cancelReason=#{cancelReason}, canceledAt=#{canceledAt}, payStatus=#{payStatus}
         where t_idx=#{t_idx}
     </update>
     <update id="userPayCount2" parameterType="TossVO">
-        update User_t set payCount = payCount - #{payCount} where id=#{id} 
+        update User_t set payCount = payCount - #{statusCount} where id=#{id} 
+    </update> -->
+
+    <update id="cancelPayment" parameterType="TossVO">
+        update Toss_t
+        set cancelReason=#{cancelReason}, payStatus= "취소중"
+        where t_idx=#{t_idx}
     </update>
 
-
     <select id="userPay" parameterType="String" resultType="TossVO">
-        select *
-        from Toss_t
-        where id = #{id}
+        select t.*, u.*
+        from Toss_t as t
+        join User_t as u on u.id = t.id
+        where u.id=#{id} and t.id=#{id}
     </select>
 </mapper>
