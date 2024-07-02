@@ -3,8 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ict.interviewdotboot.mapper.ReportMapper">
-    <insert id="reportReview" parameterType="ReportVO">
-        INSERT INTO Report_t()
-        VALUES()
+    <select id="getReportList" resultType="ReportVO">
+        SELECT * FROM Report_t ORDER BY rep_idx
+    </select>
+    <insert id="insertReport" parameterType="ReportVO">
+        INSERT INTO Report_t(u_idx, u2_idx, rep_sysdate, r_idx, rep_active)
+        VALUES(#{u_idx}, #{u2_idx}, sysdate(), #{r_idx}, #{rep_active})
     </insert>
+    <update id="updateReport" parameterType="ReportVO">
+        UPDATE Report_t
+        SET rep_active = #{rep_active}
+        WHERE rep_idx = #{rep_idx}
+    </update>
+    
 </mapper>
