@@ -20,4 +20,5 @@ public class InterviewVO {
     private String campus; // TEXT를 교정해준 문구
     private String selectedIds;
     private int payCount;
+    private String search;
 }

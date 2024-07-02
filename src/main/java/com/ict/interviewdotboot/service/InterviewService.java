@@ -50,4 +50,8 @@ public class InterviewService {
     public int minusPayCount(InterviewVO interviewVO) {
         return interviewMapper.minusPayCount(interviewVO);
     }
+
+    public List<InterviewVO> searchQuestion(InterviewVO interviewVO) {
+        return interviewMapper.searchQuestion(interviewVO);
+    }
 }
