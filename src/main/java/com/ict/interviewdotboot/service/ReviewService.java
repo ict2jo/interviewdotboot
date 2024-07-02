@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ict.interviewdotboot.mapper.ReportMapper;
 import com.ict.interviewdotboot.mapper.ReviewMapper;
 import com.ict.interviewdotboot.vo.CommentVO;
+import com.ict.interviewdotboot.vo.ReportVO;
 import com.ict.interviewdotboot.vo.ReviewVO;
 
 @Service
@@ -14,7 +16,8 @@ public class ReviewService {
     @Autowired
     private ReviewMapper reviewMapper;
 
-    
+    @Autowired
+    private ReportMapper reportMapper;
 
     public List<ReviewVO> getReviewList(){
         return reviewMapper.getReviewList();
@@ -50,4 +53,6 @@ public class ReviewService {
         int res2 = reviewMapper.insertComment(commentsVO);
         return res2 > 0;
     } */
+
+    
 }

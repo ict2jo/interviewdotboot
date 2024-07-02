@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ict.interviewdotboot.mapper.ReportMapper;
 import com.ict.interviewdotboot.vo.ReportVO;
+import java.util.List;
 
 @Service
 public class ReportService {
@@ -12,7 +13,16 @@ public class ReportService {
     @Autowired
     private ReportMapper reportMapper;
 
-    public int reportReview(ReportVO reportVO){
-        return reportMapper.reportReview(reportVO);
+    public List<ReportVO> getReportList(){
+        return reportMapper.getReportList();
+    }
+
+    public boolean insertReport(ReportVO reportVO){
+        int res = reportMapper.insertReport(reportVO);
+        return res > 0;
+    }
+
+    public int updateReport(ReportVO reportVO){
+        return reportMapper.updateReport(reportVO);
     }
 }
