@@ -44,7 +44,10 @@
         </foreach>
     </delete>
     <select id="getRandchoose" resultType="InterviewVO">
-        SELECT q_idx,question FROM Question_list WHERE category = #{category} ORDER BY RAND() LIMIT 3
+        SELECT q_idx,question
+        FROM Question_list
+        WHERE category = #{category}
+        ORDER BY RAND() LIMIT 3
     </select>
 
     <select id="getPayCount" resultType="int">
