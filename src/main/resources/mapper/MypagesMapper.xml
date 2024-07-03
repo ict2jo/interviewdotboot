@@ -41,7 +41,7 @@
         UPDATE User_t
             SET name = #{name},
                 phonenumber = #{phonenumber},
-                email = #{email},2
+                email = #{email},
                 addr = #{addr}
             WHERE u_idx = #{u_idx};
     </update>

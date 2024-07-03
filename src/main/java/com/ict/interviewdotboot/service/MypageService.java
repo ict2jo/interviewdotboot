@@ -50,7 +50,7 @@ public class MypageService {
         if (result1 > 0 && result2 > 0) {
             return 1;
         } else {
-            throw new RuntimeException("데이터베이스 업데이트 실패"); // 실패 시 롤백을 위해 예외 던지기
+            throw new RuntimeException("데이터베이스 업데이트 실패"); 
         }
     }
 
