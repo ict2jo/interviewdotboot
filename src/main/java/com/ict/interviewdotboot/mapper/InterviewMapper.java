@@ -28,4 +28,7 @@ public interface InterviewMapper {
     int minusPayCount(InterviewVO interviewVO);
 
     List<InterviewVO> searchQuestion(InterviewVO interviewVO);
+
+    int payUpdate(InterviewVO interviewVO);
+
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/comentssucc")
+@RequestMapping("/commentsucc")
 public class SuccCommentController {
     
     @Autowired
@@ -32,7 +32,9 @@ public class SuccCommentController {
     
     @PostMapping("/postcomment")
     public ResponseEntity<String> insertComment(@RequestBody CommentsSuccVO commentsSuccVO) {
+        System.out.println(commentsSuccVO);
         boolean res = commentsSuccService.insertComment(commentsSuccVO);
+        System.out.println("res : " + res);
         if(res){
             return ResponseEntity.ok("댓글  OK");
         }else{

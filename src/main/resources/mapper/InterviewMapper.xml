@@ -64,5 +64,15 @@
         AND question LIKE CONCAT('%', #{search}, '%')
     </select>
 
+    <update id="payUpdate" parameterType="InterviewVO">
+        update Toss_t
+        set remainCount = remainCount - 1
+        where id = #{id} 
+        and t_idx = (
+            select min(t_idx)
+            from Toss_t
+            where id = #{id}
+        )
+    </update>
 
 </mapper>

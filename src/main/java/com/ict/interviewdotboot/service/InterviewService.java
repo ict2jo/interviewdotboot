@@ -47,8 +47,16 @@ public class InterviewService {
         return interviewMapper.getPayCount(interviewVO);
     }
 
+    @Transactional
     public int minusPayCount(InterviewVO interviewVO) {
-        return interviewMapper.minusPayCount(interviewVO);
+        int res1 = interviewMapper.minusPayCount(interviewVO);
+        int res2 = interviewMapper.payUpdate(interviewVO);
+        
+        if (res1 > 0 && res2 > 0) {
+            return 1;
+        } else {
+            throw new RuntimeException("데이터베이스 업데이트 실패"); // 실패 시 롤백을 위해 예외 던지기
+        }
     }
 
     public List<InterviewVO> searchQuestion(InterviewVO interviewVO) {

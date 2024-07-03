@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.interviewdotboot.mapper.ReportSuccMapper">
+    <select id="getReportSuccList" resultType="ReportVO">
+        SELECT * FROM Report_t ORDER BY rep_idx
+    </select>
+    <insert id="insertSuccReport" parameterType="ReportVO">
+        INSERT INTO Report_t(u_idx, u2_idx, rep_sysdate, s_idx, rep_active)
+        VALUES(#{u_idx}, #{u2_idx}, sysdate(), #{s_idx}, #{rep_active})
+    </insert>
+    <update id="updateSuccReport" parameterType="ReportVO">
+        UPDATE Report_t
+        SET rep_active = #{rep_active}
+        WHERE rep_idx = #{rep_idx}
+    </update> 
+</mapper>

@@ -11,8 +11,8 @@
         SELECT * FROM Review_t WHERE r_idx = #{r_idx}
     </select>
     <insert id="insertReview" parameterType="ReviewVO">
-        INSERT INTO Review_t(r_id, r_title, r_content, r_company, r_regdate)
-        VALUES(#{r_id}, #{r_title}, #{r_content}, #{r_company}, sysdate())
+        INSERT INTO Review_t(r_id, r_title, u_idx, r_content, r_company, r_regdate)
+        VALUES(#{r_id}, #{r_title}, #{u_idx}, #{r_content}, #{r_company}, sysdate())
     </insert>
     <update id="updateReview" parameterType="ReviewVO">
         UPDATE Review_t

@@ -19,6 +19,7 @@ public class TossVO {
     private String approvedAt;
     private int payCount;
     private int statusCount;
+    private int remainCount;
     private String payStatus;
     private String cancelReason;
     private String paymentKey;

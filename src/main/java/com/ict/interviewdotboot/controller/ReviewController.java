@@ -2,8 +2,10 @@ package com.ict.interviewdotboot.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ict.interviewdotboot.service.ReportService;
 import com.ict.interviewdotboot.service.ReviewService;
 import com.ict.interviewdotboot.vo.CommentVO;
+import com.ict.interviewdotboot.vo.ReportVO;
 import com.ict.interviewdotboot.vo.ReviewVO;
 
 import java.util.List;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/review")
 public class ReviewController {
     @Autowired
-    ReviewService reviewService;
+    private ReviewService reviewService;
 
      @GetMapping("/reviewlist")
     public List<ReviewVO> getReviewList() {
@@ -72,7 +74,7 @@ public class ReviewController {
     public List<CommentVO> getComments(@RequestParam("r_idx") String r_idx) {
         return reviewService.getComments(r_idx);
     } */
-    
+
     
     
 }
