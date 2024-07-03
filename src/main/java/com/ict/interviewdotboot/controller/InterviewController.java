@@ -98,4 +98,11 @@ public class InterviewController {
     public int minusPayCount(InterviewVO interviewVO){
         return interviewService.minusPayCount(interviewVO);
     }
+
+    @RequestMapping ("/search")
+    public List<InterviewVO> searchQuestion(InterviewVO interviewVO){
+        System.out.println(interviewVO.getSearch());
+        return interviewService.searchQuestion(interviewVO);
+    }
+
 }

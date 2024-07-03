@@ -23,7 +23,7 @@
     </insert>
 
     <select id="getInterviewHistory" parameterType="InterviewVO">
-        SELECT t.r_idx, q.question, t.interview_date, re.text, re.r_idx
+        SELECT t.r_idx, q.question, t.interview_date, re.text, re.r_idx , re.q_idx
         FROM Interview_t AS t
         JOIN Interview_re AS re ON t.r_idx = re.r_idx
         JOIN Question_list AS q ON re.q_idx = q.q_idx
@@ -31,7 +31,7 @@
     </select>
 
     <select id="getHistoryDetail" parameterType="InterviewVO">
-        select q.question, re.text , re.pose_results, re.sentiment,re.video_uuid,re.campus,re.intention,re.feedback
+        select q.question, re.text , re.pose_results, re.sentiment,re.video_uuid,re.campus,re.intention,re.feedback,re.q_idx
         from Interview_re AS re
         JOIN Question_list AS q ON re.q_idx = q.q_idx
         where re.id = #{id} AND re.r_idx = #{r_idx}
@@ -57,6 +57,13 @@
         WHERE id = #{id}
     </update>
 
+    <select id="searchQuestion" resultType="InterviewVO">
+        SELECT q_idx, question
+        FROM Question_list
+        WHERE category = #{category}
+        AND question LIKE CONCAT('%', #{search}, '%')
+    </select>
+
     <update id="payUpdate" parameterType="InterviewVO">
         update Toss_t
         set remainCount = remainCount - 1
@@ -67,4 +74,5 @@
             where id = #{id}
         )
     </update>
+
 </mapper>

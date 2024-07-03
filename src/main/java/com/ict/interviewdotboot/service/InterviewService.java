@@ -58,4 +58,8 @@ public class InterviewService {
             throw new RuntimeException("데이터베이스 업데이트 실패"); // 실패 시 롤백을 위해 예외 던지기
         }
     }
+
+    public List<InterviewVO> searchQuestion(InterviewVO interviewVO) {
+        return interviewMapper.searchQuestion(interviewVO);
+    }
 }
