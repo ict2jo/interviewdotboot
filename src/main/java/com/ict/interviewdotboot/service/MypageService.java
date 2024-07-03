@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.interviewdotboot.mapper.MypageMapper;
+import com.ict.interviewdotboot.vo.CalendarVO;
 import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.MyuserVO;
 
@@ -60,7 +61,20 @@ public class MypageService {
     public int deletefavorites(MyuserVO myuserVO){
         return mypageMapper.deletefavorites(myuserVO);
     }
-    public List<MyuserVO> getstar( String id){
-        return mypageMapper.getstar(id);
+    public List<MyuserVO> getstar( String u_idx){
+        return mypageMapper.getstar(u_idx);
+    }
+    public List<CalendarVO> selectCalendar( CalendarVO calendarVO){
+        return mypageMapper.selectCalendar(calendarVO);
+    }
+    public int insertCalendar(CalendarVO calendarVO) {
+    return mypageMapper.insertCalendar(calendarVO);
+    }
+    public int updateCalendar(CalendarVO calendarVO) {
+        System.out.println(calendarVO.getC_idx());
+    return mypageMapper.updateCalendar(calendarVO);
+    }
+    public int deleteCalendar(CalendarVO calendarVO) {
+    return mypageMapper.deleteCalendar(calendarVO);
     }
 }
