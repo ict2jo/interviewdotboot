@@ -8,7 +8,6 @@
         SELECT * FROM Inquiry 
             WHERE id = #{id}
             ORDER BY i_idx DESC;
-
     </select>
     <select id="getInquiryDetail"  resultType="MyinquiryVO" parameterType="String">
         SELECT * FROM Inquiry WHERE i_idx = #{i_idx};
@@ -54,15 +53,42 @@
             WHERE u_idx = #{u_idx};
     </update>
     <insert id="addfavorites" parameterType="MyuserVO">
-        INSERT INTO Favorites(f_num,id)
-        VALUES (#{f_num},#{id})
+        INSERT INTO Favorites(f_num,u_idx)
+        VALUES (#{f_num},#{u_idx})
     </insert>
     <delete id="deletefavorites" parameterType="MyuserVO">
         DELETE FROM Favorites
-        WHERE f_num = #{f_num} AND id = #{id}
+        WHERE f_num = #{f_num} AND u_idx = #{u_idx}
     </delete>
     <select id="getstar"  parameterType="String" resultType="MyuserVO">
         SELECT f_num FROM Favorites
-        WHERE id = #{id};
+        WHERE u_idx = #{u_idx};
     </select>
+    <select id="selectCalendar"  resultType="CalendarVO">
+        SELECT *
+            FROM Calender_t
+            WHERE u_idx = #{u_idx} AND c_active = 1
+            ORDER BY end DESC;
+        <!-- SELECT *
+            FROM Calender_t c
+            WHERE u_idx = #{u_idx} AND c_active = 1
+            ORDER BY end DESC; -->
+
+    </select>
+    <insert id="insertCalendar" parameterType="CalendarVO">
+        INSERT INTO Calender_t(u_idx, title, start, end, f_idx)
+        VALUES (#{u_idx}, #{title}, #{start}, #{end}, null)
+    </insert>
+    <update id="updateCalendar" parameterType="CalendarVO">
+        UPDATE Calender_t
+            SET title = #{title},
+                start = #{start},
+                end = #{end}
+            WHERE c_idx = #{c_idx};
+    </update>
+    <update id="deleteCalendar" parameterType="CalendarVO">
+        UPDATE Calender_t
+            SET c_active = 0
+            WHERE c_idx = #{c_idx};
+    </update>
 </mapper>

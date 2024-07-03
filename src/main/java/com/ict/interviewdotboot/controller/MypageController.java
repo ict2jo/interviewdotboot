@@ -3,9 +3,11 @@ package com.ict.interviewdotboot.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.interviewdotboot.service.MypageService;
+import com.ict.interviewdotboot.vo.CalendarVO;
 import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.MyuserVO;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +79,26 @@ public class MypageController {
     }
 
     @GetMapping("/getstar")
-    public List<MyuserVO> getstar(@RequestParam("id") String id) {
-        return mypageService.getstar(id);
+    public List<MyuserVO> getstar(@RequestParam("u_idx") String u_idx) {
+        return mypageService.getstar(u_idx);
     }
 
-    
+    @GetMapping("/selectCalendar")
+    public List<CalendarVO> selectCalendar(@RequestParam("u_idx") String u_idx) {
+        CalendarVO calendarVO = new CalendarVO();
+        calendarVO.setU_idx(u_idx);
+    return mypageService.selectCalendar(calendarVO);
+    }
+    @PostMapping("/insertCalendar")
+    public int insertCalendar(@RequestBody CalendarVO calendarVO) {
+    return mypageService.insertCalendar(calendarVO);
+    }
+    @PostMapping("/updateCalendar")
+    public int updateCalendar(@RequestBody CalendarVO calendarVO) {
+    return mypageService.updateCalendar(calendarVO);
+    }
+    @PostMapping("/deleteCalendar")
+    public int deleteCalendar(@RequestBody CalendarVO calendarVO) {
+    return mypageService.deleteCalendar(calendarVO);
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ict.interviewdotboot.vo.CalendarVO;
 import com.ict.interviewdotboot.vo.MyinquiryVO;
 import com.ict.interviewdotboot.vo.MyuserVO;
 
@@ -20,5 +21,9 @@ public interface MypageMapper {
     int editprofile2(MyuserVO myuserVO);
     int addfavorites(MyuserVO myuserVO);
     int deletefavorites(MyuserVO myuserVO);
-    List<MyuserVO> getstar(String id);
+    List<MyuserVO> getstar(String u_idx);
+    List<CalendarVO> selectCalendar(CalendarVO calendarVO);
+    int insertCalendar(CalendarVO calendarVO);
+    int updateCalendar(CalendarVO calendarVO);
+    int deleteCalendar(CalendarVO calendarVO);
 }
