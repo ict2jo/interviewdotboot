@@ -13,8 +13,8 @@
         SELECT * FROM Inquiry WHERE i_idx = #{i_idx};
     </select>
     <insert id="insertinquiry" parameterType="MyinquiryVO">
-        INSERT INTO Inquiry (i_subject, i_content, id)
-        VALUES (#{i_subject}, #{i_content},#{id})
+        INSERT INTO Inquiry (i_subject, i_content, id,i_date)
+        VALUES (#{i_subject}, #{i_content},#{id},NOW())
     </insert>
     <update id="editinquiry" parameterType="MyinquiryVO">
         UPDATE Inquiry
@@ -41,7 +41,8 @@
         UPDATE User_t
             SET name = #{name},
                 phonenumber = #{phonenumber},
-                email = #{email}
+                email = #{email},
+                addr = #{addr}
             WHERE u_idx = #{u_idx};
     </update>
     <update id="editprofile2" parameterType="MyuserVO">
@@ -67,22 +68,17 @@
     <select id="selectCalendar"  resultType="CalendarVO">
         SELECT *
             FROM Calender_t
-            WHERE u_idx = #{u_idx} AND c_active = 1
-            ORDER BY end DESC;
-        <!-- SELECT *
-            FROM Calender_t c
-            WHERE u_idx = #{u_idx} AND c_active = 1
-            ORDER BY end DESC; -->
-
+            WHERE u_idx = #{u_idx} AND c_active = 1;
     </select>
     <insert id="insertCalendar" parameterType="CalendarVO">
-        INSERT INTO Calender_t(u_idx, title, start, end, f_idx)
-        VALUES (#{u_idx}, #{title}, #{start}, #{end}, null)
+        INSERT INTO Calender_t(u_idx, title, start, end, color)
+        VALUES (#{u_idx}, #{title}, #{start}, #{end}, #{color})
     </insert>
     <update id="updateCalendar" parameterType="CalendarVO">
         UPDATE Calender_t
             SET title = #{title},
                 start = #{start},
+                color = #{color}, 
                 end = #{end}
             WHERE c_idx = #{c_idx};
     </update>
