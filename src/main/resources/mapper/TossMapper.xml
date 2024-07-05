@@ -8,10 +8,10 @@
         INSERT INTO Toss_t(id, orderId, orderName, amount, approvedAt, provider, statusCount, remainCount, payStatus, cancelReason, canceledAt, paymentKey)
         VALUES(#{id}, #{orderId}, #{orderName}, #{totalAmount}, #{approvedAt}, #{provider}, #{statusCount}, #{statusCount}, #{payStatus}, #{cancelReason}, #{canceledAt}, #{paymentKey})
     </insert>
+    
     <update id="userPayCount" parameterType="TossVO">
         update User_t set payCount = payCount + #{statusCount} where id=#{id} 
     </update>
-
 
     <select id="payCountSelect" parameterType="String" resultType="TossVO">
         select t.statusCount, u.payCount
@@ -19,16 +19,6 @@
         join User_t as u on u.id = t.id
         where u.id=#{id} and t.t_idx=#{t_idx}
     </select>
-
-
-    <!-- <update id="cancelPayment" parameterType="TossVO">
-        update Toss_t 
-        set cancelReason=#{cancelReason}, canceledAt=#{canceledAt}, payStatus=#{payStatus}
-        where t_idx=#{t_idx}
-    </update>
-    <update id="userPayCount2" parameterType="TossVO">
-        update User_t set payCount = payCount - #{statusCount} where id=#{id} 
-    </update> -->
 
     <update id="cancelPayment" parameterType="TossVO">
         update Toss_t

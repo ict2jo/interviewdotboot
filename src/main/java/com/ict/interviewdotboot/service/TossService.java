@@ -47,7 +47,7 @@ public class TossService {
             
             HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
             System.out.println("결제엔티티 "+entity);
-
+            
             ResponseEntity<String> response = restTemplate.exchange(
                 "https://api.tosspayments.com/v1/payments/confirm",
                 HttpMethod.POST,
@@ -55,8 +55,8 @@ public class TossService {
                 String.class
             );
             System.out.println("결제Response: " + response); // UTF-8로 변환된 응답 출력
-
-             // JSON 응답 파싱
+            
+            // JSON 응답 파싱
             ObjectMapper objectMapper = new ObjectMapper();
             TossVO tvo = objectMapper.readValue(response.getBody(), TossVO.class);
             if (tvo.getEasyPay() != null) {
@@ -64,12 +64,12 @@ public class TossService {
             }
             tvo.setId(id);
             System.out.println("결제파싱된 응답: " + tvo);
-
+            
             // approvedAt 날짜 변환
             LocalDateTime approvedAt = LocalDateTime.parse(tvo.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
             String formattedApprovedAt = approvedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             tvo.setApprovedAt(formattedApprovedAt);
-
+            
             // 이용권 횟수
             tvo.setStatusCount(tvo.getTotalAmount()/1000); 
             
@@ -94,69 +94,6 @@ public class TossService {
         return true;
     }
     
-
-
-    // public boolean cancelPayment(String paymentKey, String t_idx, String authorizationHeader, String id, String cancelReason) {
-    //     try {
-    //         System.out.println("페이먼츠키22"+paymentKey);
-    //         System.out.println("티티티아이디나오낭ㅇㅇㅇ" + t_idx);
-    //         System.out.println("아이디나오낭ㅇㅇㅇ" + id);
-
-    //         RestTemplate restTemplate = new RestTemplate();
-    //         // UTF-8 인코딩 설정 추가
-    //         restTemplate.getMessageConverters()
-    //             .add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-    //         HttpHeaders headers = new HttpHeaders();
-    //         headers.set("Authorization", authorizationHeader);
-    //         headers.set("Content-Type", "application/json; charset=UTF-8");
-            
-    //         String requestJson = String.format(
-    //             "{\"paymentKey\":\"%s\",\"t_idx\":\"%s\",\"cancelReason\":\"%s\",\"userId\":\"%s\"}",
-    //             paymentKey, t_idx, cancelReason, id
-    //         );
-            
-    //         HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
-    //         System.out.println("환불엔티티 "+entity);
-
-    //         ResponseEntity<String> response = restTemplate.exchange(
-    //             "https://api.tosspayments.com/v1/payments/"+paymentKey+"/cancel",
-    //             HttpMethod.POST,
-    //             entity,
-    //             String.class
-    //         );
-    //         System.out.println("환불Response: " + response); // UTF-8로 변환된 응답 출력
-
-    //         // JSON 응답 파싱
-    //         ObjectMapper objectMapper = new ObjectMapper();
-    //         TossVO tvo = objectMapper.readValue(response.getBody(), TossVO.class);
-    //         System.out.println("환불파싱된 응답: " + tvo);
-    //         tvo.setId(id);
-    //         tvo.setT_idx(t_idx);
-
-    //         // 이용권 횟수
-    //         tvo.setStatusCount(tvo.getTotalAmount()/1000); 
-            
-    //         if (tvo.getCancels() != null && !tvo.getCancels().isEmpty()) {
-    //             TossVO.Cancel cancel = tvo.getCancels().get(0);
-    //             String canceledAt = cancel.getCanceledAt();
-    //             int cancelAmount = cancel.getCancelAmount();
-
-    //             LocalDateTime canceledAtDateTime = LocalDateTime.parse(canceledAt, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-    //             String formattedCanceledAt = canceledAtDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-    //             tvo.setCanceledAt(formattedCanceledAt);
-    //             tvo.setPayStatus("취소완료");
-    //             tvo.setCancelReason(cancelReason);
-
-    //             int res = tossMapper.cancelPayment(tvo);
-    //             int res2 = tossMapper.userPayCount2(tvo);
-    //         }
-    //     } catch (Exception e) {
-    //         System.out.println("취소오류 : "+e);
-    //     }
-    //     return true;
-    // }
-
     public int cancelPayment(TossVO tvo) {
         return tossMapper.cancelPayment(tvo);
     }

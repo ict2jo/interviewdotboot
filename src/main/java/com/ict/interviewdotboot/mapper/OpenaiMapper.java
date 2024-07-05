@@ -7,13 +7,7 @@ import com.ict.interviewdotboot.vo.UserVO;
 
 @Mapper
 public interface OpenaiMapper {
-
     int introduceUpdate(UserVO uvo);
-
     int update1(MyuserVO myuserVO);
-
     int update2(MyuserVO myuserVO);
-
-
-    
 }
