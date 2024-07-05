@@ -35,7 +35,7 @@ public class ReviewController {
     public List<ReviewVO> getReviewDetail() {
         return reviewService.getReviewDetail();
     }
-
+    
     
      
 
