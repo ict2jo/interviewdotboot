@@ -7,6 +7,22 @@
     <update id="introduceUpdate" parameterType="UserVO">
         update User_t
         set Field = #{Field}
-        WHERE id = #{id};
+        where id = #{id};
     </update>
+
+    <update id="update1" parameterType="MyuserVO">
+        update Add_profile
+        set p_job = #{p_job},
+            p_class = #{p_class},
+            p_career = #{p_career},
+            p_location = #{p_location}
+        where u_idx = #{u_idx};
+    </update>
+
+    <update id="update2" parameterType="MyuserVO">
+        update User_t
+        set Field = #{Field}
+        where u_idx = #{u_idx};
+    </update>
+
 </mapper>

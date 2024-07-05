@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ict.interviewdotboot.service.OpenaiService;
+import com.ict.interviewdotboot.vo.MyuserVO;
 import com.ict.interviewdotboot.vo.UserVO;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,11 @@ public class OpenaiController {
         uvo.setField(uvo.getCorrectedEssay());
         return openaiService.introduceUpdate(uvo);
     }
-    
 
+    @PostMapping("/update")
+    public int update(@RequestBody MyuserVO myuserVO, String selfIntroduction) {
+        myuserVO.setField(myuserVO.getSelfIntroduction());
+        return openaiService.update(myuserVO);
+    }
 
 }
