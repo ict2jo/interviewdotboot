@@ -31,5 +31,6 @@
         from Toss_t as t
         join User_t as u on u.id = t.id
         where u.id=#{id} and t.id=#{id}
+        order by t.t_idx desc
     </select>
 </mapper>

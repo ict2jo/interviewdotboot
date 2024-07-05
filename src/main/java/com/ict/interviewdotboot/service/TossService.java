@@ -46,7 +46,6 @@ public class TossService {
             );
             
             HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
-            System.out.println("결제엔티티 "+entity);
             
             ResponseEntity<String> response = restTemplate.exchange(
                 "https://api.tosspayments.com/v1/payments/confirm",
@@ -63,7 +62,6 @@ public class TossService {
                 tvo.setProvider(tvo.getEasyPay().getProvider());
             }
             tvo.setId(id);
-            System.out.println("결제파싱된 응답: " + tvo);
             
             // approvedAt 날짜 변환
             LocalDateTime approvedAt = LocalDateTime.parse(tvo.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
@@ -89,7 +87,7 @@ public class TossService {
             
             return response.getStatusCode().is2xxSuccessful();
         } catch (Exception e) {
-            System.out.println("결제오류 : "+e);
+            System.out.println("결제오류 : " + e);
         }
         return true;
     }
