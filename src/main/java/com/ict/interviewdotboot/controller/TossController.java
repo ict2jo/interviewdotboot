@@ -25,7 +25,8 @@ public class TossController {
     private TossService tossService;
     
     @PostMapping("/confirm")
-    public ResponseEntity<TossVO> confirmPayment(@RequestBody TossVO tvo, @RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<TossVO> confirmPayment(@RequestBody TossVO tvo,
+            @RequestHeader("Authorization") String authorizationHeader) {
         try {
             boolean isConfirmed = tossService.confirmPayment(
                 tvo.getPaymentKey(),
@@ -35,8 +36,6 @@ public class TossController {
                 tvo.getId()
                 );
             if (isConfirmed) {
-                System.out.println("헤더"+authorizationHeader);
-                System.out.println("아이디디디디디디디디: " + tvo.getId());
                 return ResponseEntity.ok(new TossVO());
             } else {
                 return ResponseEntity.status(400).body(new TossVO());
@@ -54,7 +53,6 @@ public class TossController {
 
     @GetMapping("/userPay")
     public List<TossVO> userPay(@RequestParam("id") String id) {
-        System.out.println("오니니니니니니니니니");
         return tossService.userPay(id);
     }
 
