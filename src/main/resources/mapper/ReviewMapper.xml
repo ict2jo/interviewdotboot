@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ict.interviewdotboot.mapper.ReviewMapper">
     <select id="getReviewList" resultType="ReviewVO">
-        SELECT * FROM Review_t ORDER BY r_idx 
+        SELECT * FROM Review_t ORDER BY r_idx DESC
     </select>
     <select id="getReviewDetail" resultType="ReviewVO">
         SELECT * FROM Review_t WHERE r_idx = #{r_idx}
