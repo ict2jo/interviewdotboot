@@ -5,7 +5,7 @@
     
 <mapper namespace="com.ict.interviewdotboot.mapper.SuccessMapper">
     <select id="getSuccessList" resultType="SuccessVO">
-        SELECT * FROM Success_t ORDER BY s_idx
+        SELECT * FROM Success_t ORDER BY s_idx DESC
     </select>    
     <select id="getSuccessDetail" resultType="SuccessVO">
         SELECT * FROM Success_t WHERE s_idx = #{s_idx}

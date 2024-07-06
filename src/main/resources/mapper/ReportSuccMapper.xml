@@ -13,7 +13,7 @@
     </insert>
     <update id="updateSuccReport" parameterType="ReportVO">
         UPDATE Report_t
-        SET rep_active = #{rep_active}
+        SET rep_active = 0
         WHERE rep_idx = #{rep_idx}
     </update> 
 </mapper>
