@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.interviewdotboot.mapper.OpenaiMapper;
 import com.ict.interviewdotboot.vo.MyuserVO;
+import com.ict.interviewdotboot.vo.ResumeVO;
 import com.ict.interviewdotboot.vo.UserVO;
 
 @Service
@@ -28,6 +29,10 @@ public class OpenaiService {
         } else {
             throw new RuntimeException("데이터베이스 업데이트 실패"); 
         }
+    }
+
+    public int insert(ResumeVO resumeVO) {
+        return openaiMapper.insert(resumeVO);
     }
     
 }
