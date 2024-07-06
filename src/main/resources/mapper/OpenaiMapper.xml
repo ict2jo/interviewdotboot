@@ -25,4 +25,9 @@
         where u_idx = #{u_idx};
     </update>
 
+    <insert id="insert" parameterType="ResumeVO">
+        insert into Resume_t(u_idx, title, contetnt, location, job, classInfo, career)
+        values(#{u_idx}, #{title}, #{contetnt}, #{location}, #{job}, #{classInfo}, #{career})
+    </insert>
+
 </mapper>
