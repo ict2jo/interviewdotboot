@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ict.interviewdotboot.mapper.OpenaiMapper;
 import com.ict.interviewdotboot.vo.MyuserVO;
 import com.ict.interviewdotboot.vo.ResumeVO;
-import com.ict.interviewdotboot.vo.UserVO;
 
 @Service
 public class OpenaiService {
@@ -47,6 +46,10 @@ public class OpenaiService {
     
     public int re_update(ResumeVO resumeVO) {
         return openaiMapper.re_update(resumeVO);
+    }
+    
+    public int re_delete(ResumeVO resumeVO) {
+        return openaiMapper.re_delete(resumeVO);
     }
     
 }

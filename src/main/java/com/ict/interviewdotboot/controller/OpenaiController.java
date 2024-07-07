@@ -3,6 +3,9 @@ package com.ict.interviewdotboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,12 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ict.interviewdotboot.service.OpenaiService;
 import com.ict.interviewdotboot.vo.MyuserVO;
 import com.ict.interviewdotboot.vo.ResumeVO;
-import com.ict.interviewdotboot.vo.TossVO;
-import com.ict.interviewdotboot.vo.UserVO;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -58,6 +55,12 @@ public class OpenaiController {
     public int re_update(@RequestBody ResumeVO resumeVO) {
         System.out.println("업데이트 " + resumeVO);
         return openaiService.re_update(resumeVO);
+    }
+
+    @PostMapping("/re_delete")
+    public int re_delete(@RequestBody ResumeVO resumeVO) {
+        System.out.println("딜리트 " + resumeVO);
+        return openaiService.re_delete(resumeVO);
     }
 
 }
