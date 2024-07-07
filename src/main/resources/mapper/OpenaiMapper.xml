@@ -4,10 +4,10 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ict.interviewdotboot.mapper.OpenaiMapper">
-    <update id="introduceUpdate" parameterType="UserVO">
-        update User_t
-        set Field = #{Field}
-        where id = #{id};
+    <update id="introduceUpdate" parameterType="ResumeVO">
+        update Resume_t
+        set content=#{content}
+        where resume_idx=#{resume_idx}
     </update>
 
     <update id="update1" parameterType="MyuserVO">
@@ -26,8 +26,25 @@
     </update>
 
     <insert id="insert" parameterType="ResumeVO">
-        insert into Resume_t(id, title, contetnt, location, job, classInfo, career)
-        values(#{id}, #{title}, #{contetnt}, #{location}, #{job}, #{classInfo}, #{career})
+        insert into Resume_t(u_idx, title, content, location, job, classInfo, career)
+        values(#{u_idx}, #{title}, #{content}, #{location}, #{job}, #{classInfo}, #{career})
     </insert>
 
+    <select id="re_select" parameterType="String" resultType="ResumeVO">
+        select *
+        from Resume_t
+        where u_idx = #{u_idx}
+    </select>
+
+    <select id="re_select2" parameterType="String" resultType="ResumeVO">
+        select *
+        from Resume_t
+        where resume_idx = #{resume_idx}
+    </select>
+
+    <update id="re_update" parameterType="ResumeVO">
+        update Resume_t
+        set title=#{title}, content=#{content}, location=#{location}, job=#{job}, classInfo=#{classInfo}, career=#{career}
+        where resume_idx=#{resume_idx}
+    </update>
 </mapper>

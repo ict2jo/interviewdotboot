@@ -1,5 +1,7 @@
 package com.ict.interviewdotboot.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +17,8 @@ public class OpenaiService {
     @Autowired
     private OpenaiMapper openaiMapper;
 
-    public int introduceUpdate(UserVO uvo) {
-        return openaiMapper.introduceUpdate(uvo);
+    public int introduceUpdate(ResumeVO resumeVO) {
+        return openaiMapper.introduceUpdate(resumeVO);
     }
 
     @Transactional
@@ -33,6 +35,18 @@ public class OpenaiService {
 
     public int insert(ResumeVO resumeVO) {
         return openaiMapper.insert(resumeVO);
+    }
+
+    public List<ResumeVO> re_select(String u_idx) {
+        return openaiMapper.re_select(u_idx);
+    }
+    
+    public List<ResumeVO> re_select2(String resume_idx) {
+        return openaiMapper.re_select2(resume_idx);
+    }
+    
+    public int re_update(ResumeVO resumeVO) {
+        return openaiMapper.re_update(resumeVO);
     }
     
 }
