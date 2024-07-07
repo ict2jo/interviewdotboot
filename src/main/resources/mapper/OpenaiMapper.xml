@@ -47,4 +47,9 @@
         set title=#{title}, content=#{content}, location=#{location}, job=#{job}, classInfo=#{classInfo}, career=#{career}
         where resume_idx=#{resume_idx}
     </update>
+
+    <delete id="re_delete" parameterType="ResumeVO">
+        delete from Resume_t
+        where resume_idx=#{resume_idx}
+    </delete>
 </mapper>

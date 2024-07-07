@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ict.interviewdotboot.vo.MyuserVO;
 import com.ict.interviewdotboot.vo.ResumeVO;
-import com.ict.interviewdotboot.vo.UserVO;
 
 @Mapper
 public interface OpenaiMapper {
@@ -18,4 +17,5 @@ public interface OpenaiMapper {
     List<ResumeVO> re_select(String u_idx);
     List<ResumeVO> re_select2(String resume_idx);
     int re_update(ResumeVO resumeVO);
+    int re_delete(ResumeVO resumeVO);
 }
