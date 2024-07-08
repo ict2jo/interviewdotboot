@@ -45,7 +45,7 @@ public class TossService {
                 paymentKey, orderId, amount, id
             );
             
-            HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
+            HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);     // 결제 엔티티
             
             ResponseEntity<String> response = restTemplate.exchange(
                 "https://api.tosspayments.com/v1/payments/confirm",
@@ -68,9 +68,8 @@ public class TossService {
             String formattedApprovedAt = approvedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             tvo.setApprovedAt(formattedApprovedAt);
             
-            // 이용권 횟수
+            // 이용권 횟수, 상품명, 결제상태 변경
             tvo.setStatusCount(tvo.getTotalAmount()/1000); 
-            
             if (tvo.getTotalAmount() == 1000) {
                 tvo.setOrderName("1회 이용권");
             } else if (tvo.getTotalAmount() == 10000) {
@@ -78,7 +77,6 @@ public class TossService {
             } else {
                 tvo.setOrderName("내맘대로 이용권");
             }
-            
             tvo.setPayStatus("결제완료");
             
             // DB
