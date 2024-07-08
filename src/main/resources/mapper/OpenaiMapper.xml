@@ -34,6 +34,7 @@
         select *
         from Resume_t
         where u_idx = #{u_idx}
+        order by resume_idx desc
     </select>
 
     <select id="re_select2" parameterType="String" resultType="ResumeVO">
