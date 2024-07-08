@@ -44,7 +44,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             String token = jwtUtil.generateToken(userDetails);
             System.out.println("token: "+token);
             response.addHeader("Authorization", "Bearer " +token);            
-            response.sendRedirect("http://localhost:3000/signin/login?token="+token);
+            response.sendRedirect("http://192.168.0.68:3000/signin/login?token="+token);
 
         } catch (Exception e) {
             e.printStackTrace();
