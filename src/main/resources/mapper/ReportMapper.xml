@@ -8,12 +8,11 @@
     </select>
     <insert id="insertReport" parameterType="ReportVO">
         INSERT INTO Report_t(u_idx, u2_idx, rep_sysdate, r_idx, rep_active)
-        VALUES(#{u_idx}, #{u2_idx}, sysdate(), #{r_idx}, #{rep_active})
+        VALUES(#{u_idx}, #{u2_idx}, sysdate(), #{r_idx}, 0)
     </insert>
     <update id="updateReport" parameterType="ReportVO">
         UPDATE Report_t
         SET rep_active = 0
         WHERE rep_idx = #{rep_idx}
     </update>
-    
 </mapper>
